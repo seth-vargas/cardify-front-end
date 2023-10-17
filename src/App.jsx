@@ -2,30 +2,48 @@
 
 import Navbar from "./Navbar";
 import LandingPage from "./LandingPage";
-import Form from "./GetUsername";
+import LoginForm from "./LoginForm";
 import Homepage from "./Homepage";
 import CardList from "./CardList";
 
 import { Switch, Route } from "react-router-dom";
+import SearchForm from "./SearchForm";
+const user = { username: "seth" };
 
 function App() {
   return (
-    <div className="container">
-      <Navbar />
-      <main>
+    <div className="bg-light" style={{ height: "100vh" }}>
+      <Navbar username={user.username} />
+      <main className="container">
         <Switch>
           <Route exact path="/">
             <LandingPage />
           </Route>
           <Route exact path="/login">
-            <Form />
+            <LoginForm />
           </Route>
 
-          <Route exact path="/u/:username">
+          <Route exact path="/signup">
+            <form>Sign up form</form>
+          </Route>
+
+          <Route exact path="/search">
+            <SearchForm />
+          </Route>
+
+          <Route exact path="/my-account">
+            <div>Your account info</div>
+          </Route>
+
+          <Route exact path="/:username">
             <Homepage />
           </Route>
 
-          <Route exact path="/u/:username/decks/:deckSlug">
+          <Route exact path="/:username/decks/create">
+            <form>New Deck Form</form>
+          </Route>
+
+          <Route exact path="/:username/decks/:deckSlug">
             <CardList />
           </Route>
 
