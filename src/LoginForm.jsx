@@ -34,8 +34,8 @@ export default function LoginForm() {
           <input
             type="text"
             className="form-control"
-            name="username-input"
-            id="username-input"
+            name="username"
+            id="username"
             placeholder="Username"
             {...register("username", { required: true })}
           />
@@ -50,8 +50,8 @@ export default function LoginForm() {
           <input
             type="password"
             className="form-control"
-            name="password-input"
-            id="password-input"
+            name="password"
+            id="password"
             placeholder="Password"
             {...register("password", { required: true })}
           />
