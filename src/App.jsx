@@ -1,19 +1,19 @@
 /* This component handles the routing and determines what other components are rendered. */
 
-import Navbar from "./Navbar";
+import Navbar from "./Navbar/Navbar";
 import LandingPage from "./LandingPage";
-import LoginForm from "./LoginForm";
+import LoginForm from "./forms/LoginForm";
+import SearchForm from "./forms/SearchForm";
+import NewDeckForm from "./forms/NewDeckForm";
 import Homepage from "./Homepage";
-import CardList from "./CardList";
+import CardList from "./deck/CardList";
 
 import { Switch, Route } from "react-router-dom";
-import SearchForm from "./SearchForm";
-import NewDeckForm from "./NewDeckForm";
 const user = { username: "seth" };
 
 function App() {
   return (
-    <div className="bg-light" style={{ height: "100vh" }}>
+    <div>
       <Navbar username={user.username} />
       <main className="container">
         <Switch>

@@ -13,8 +13,11 @@ export default function LandingPage() {
       <p className="lead">This is going to blow your mind.</p>
 
       <hr className="my-4" />
-      <a href="/login" className="btn btn-primary">
+      <a href="/login" className="btn btn-primary me-4">
         Login
+      </a>
+      <a href="/signup" className="btn btn-secondary">
+        Sign Up
       </a>
     </div>
   );

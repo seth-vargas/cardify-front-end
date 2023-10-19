@@ -6,7 +6,7 @@
 // TODO - Handle 404: User Not Found
 
 import { useEffect, useState } from "react";
-import DeckList from "./DeckList";
+import DeckList from "./deck/DeckList";
 import slugify from "react-slugify";
 import { useParams } from "react-router-dom";
 import CardifyApi from "./api";
@@ -34,15 +34,17 @@ export default function Homepage() {
     fetchData();
   }, []);
 
-  if (isLoading) {
-    return <Loading />;
-  }
-
   return (
-    <div className="m-5">
+    <div className="my-5">
       <h1>Homepage</h1>
-      <DeckList decks={decks} title="Decks" />
-      <DeckList decks={favorites} title="Favorites" />
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <>
+          <DeckList decks={decks} title="Decks" />
+          <DeckList decks={favorites} title="Favorites" />
+        </>
+      )}
     </div>
   );
 }
