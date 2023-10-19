@@ -18,13 +18,26 @@ export default class CardifyApi {
    */
 
   static async getDecks(username) {
-    const result = await axios.get(`${BASE_API_URL}/users/${username}/decks`);
+    const result = await axios.get(
+      `${BASE_API_URL}/decks?username=${username}`
+    );
+    return result.data;
+  }
+
+  /* Search for decks based on user input
+   * Returns list of decks where deckName ILIKE input AND tagName IS input
+   */
+
+  static async search(searchTerm, orderBy = "title") {
+    const result = await axios.get(
+      `${BASE_API_URL}/decks?term=${searchTerm}&isPublic=true&orderBy=${orderBy}`
+    );
     return result.data;
   }
 
   static async getCards(username, deckSlug) {
     const result = await axios.get(
-      `${BASE_API_URL}/users/${username}/decks/${deckSlug}`
+      `${BASE_API_URL}/decks/${deckSlug}?username=${username}`
     );
 
     return result.data;
