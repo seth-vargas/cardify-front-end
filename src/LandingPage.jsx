@@ -8,20 +8,14 @@ import React from "react";
 
 export default function LandingPage() {
   return (
-    <div>
-      <h1>Welcome to Cardify!</h1>
-      <div className="jumbotron">
-        <div>
-          <a href="/login" className="btn btn-primary">
-            Log in
-          </a>
-        </div>
-        <div>
-          <a href="/signup" className="btn btn-secondary">
-            Sign up
-          </a>
-        </div>
-      </div>
+    <div className="jumbotron">
+      <h1 className="display-4">Welcome to Cardify, the flashcard app!</h1>
+      <p className="lead">This is going to blow your mind.</p>
+
+      <hr className="my-4" />
+      <a href="/login" className="btn btn-primary">
+        Login
+      </a>
     </div>
   );
 }

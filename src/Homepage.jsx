@@ -3,11 +3,14 @@
  * The decks they favorited
  */
 
+// TODO - Handle 404: User Not Found
+
 import { useEffect, useState } from "react";
 import DeckList from "./DeckList";
 import slugify from "react-slugify";
 import { useParams } from "react-router-dom";
 import CardifyApi from "./api";
+import Loading from "./Loading";
 
 export default function Homepage() {
   const { username } = useParams();
@@ -32,11 +35,11 @@ export default function Homepage() {
   }, [username]);
 
   if (isLoading) {
-    return <p>Loading &hellip;</p>;
+    return <Loading />;
   }
 
   return (
-    <div>
+    <div className="m-5">
       <h1>Homepage</h1>
       <DeckList decks={decks} title="Decks" />
       <DeckList decks={favorites} title="Favorites" />

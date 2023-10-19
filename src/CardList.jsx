@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CardifyApi from "./api";
 import FlashCard from "./FlashCard";
+import Loading from "./Loading";
 
 export default function CardList() {
   const { username, deckSlug } = useParams();
@@ -28,7 +29,7 @@ export default function CardList() {
   }, [username]);
 
   if (isLoading) {
-    return <p>Loading &hellip;</p>;
+    return <Loading />;
   }
 
   return (
@@ -37,7 +38,7 @@ export default function CardList() {
       <h3>Made by {username}</h3>
       <div className="d-flex flex-column">
         {cards.map((card) => (
-          <FlashCard card={card} />
+          <FlashCard front={card.front} back={card.back} key={card.id} />
         ))}
       </div>
     </div>

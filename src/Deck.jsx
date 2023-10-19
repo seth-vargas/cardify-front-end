@@ -1,8 +1,9 @@
 /* Deck: Renders a deck card that contains relevant information regarding a specific deck. */
 
-import React from "react";
+import React, { useState } from "react";
 
 export default function Deck({ deck }) {
+  const [tags, setTags] = useState(deck.tags);
   return (
     <div className="card me-3">
       <div className="card-body">
@@ -10,6 +11,8 @@ export default function Deck({ deck }) {
         <h6 className="card-subtitle mb-2 text-body-secondary">
           Made by {deck.username}
         </h6>
+
+        <p>Tags: {tags}</p>
         <a
           href={`/${deck.username}/decks/${deck.slug}`}
           className="btn btn-dark"

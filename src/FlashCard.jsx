@@ -2,12 +2,12 @@
 
 import React from "react";
 
-export default function FlashCard({ card }) {
+export default function FlashCard({ front, back }) {
   return (
     <div className="card me-3 mb-3" style={{ height: "15rem" }}>
       <div className="card-body">
-        <h5 className="card-title">{card.front}</h5>
-        <p>{card.back}</p>
+        <h5 className="card-title">{front}</h5>
+        <p>{back}</p>
       </div>
     </div>
   );
