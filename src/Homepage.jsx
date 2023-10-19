@@ -32,7 +32,7 @@ export default function Homepage() {
       }
     }
     fetchData();
-  }, [username]);
+  }, []);
 
   if (isLoading) {
     return <Loading />;
