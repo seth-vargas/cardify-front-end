@@ -22,11 +22,19 @@ export default function SearchForm() {
         <input
           className="form-control me-2"
           type="search"
-          placeholder="Search something!"
+          placeholder={
+            errors.searchTerm ? "Input required" : "Search for a deck"
+          }
           aria-label="Search"
-          {...register("search-term")}
+          id="search-form"
+          {...register("searchTerm", { required: true })}
         />
-        <button className="btn btn-outline-dark" type="submit">
+        <button
+          className={
+            errors.searchTerm ? "btn btn-danger" : "btn btn-outline-dark"
+          }
+          type="submit"
+        >
           Search
         </button>
       </form>
