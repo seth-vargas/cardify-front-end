@@ -13,6 +13,15 @@ export default class CardifyApi {
     return result.data;
   }
 
+  static async createDeck({ username, title, isPublic }) {
+    const result = await axios.post(`${BASE_API_URL}/decks`, {
+      username,
+      title,
+      isPublic,
+    });
+    return result.data;
+  }
+
   /* GET route for decks
    * Returns list of objects that represent decks
    */
