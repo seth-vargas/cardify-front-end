@@ -1,9 +1,16 @@
 /* Renders a form that searches the DB for matching deck names and tag names. */
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import CardifyApi from "./api";
+import DeckList from "./DeckList";
+import Loading from "./Loading";
 
 export default function SearchForm() {
+  const [decks, setDecks] = useState([]);
+  const [term, setTerm] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -11,9 +18,16 @@ export default function SearchForm() {
     formState: { errors },
   } = useForm();
 
-  function onSubmit(data) {
-    const { username, password } = data;
-    console.log(username, password);
+  async function onSubmit(data) {
+    try {
+      const { searchTerm } = data;
+      setIsLoading(true);
+      const result = await CardifyApi.search(searchTerm);
+      setDecks(result.decks);
+      setIsLoading(false);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return (
@@ -38,6 +52,7 @@ export default function SearchForm() {
           Search
         </button>
       </form>
+      {isLoading ? <Loading /> : <DeckList decks={decks} title={"Matches"} />}
     </div>
   );
 }
