@@ -8,6 +8,7 @@ import CardList from "./CardList";
 
 import { Switch, Route } from "react-router-dom";
 import SearchForm from "./SearchForm";
+import NewDeckForm from "./NewDeckForm";
 const user = { username: "seth" };
 
 function App() {
@@ -40,7 +41,7 @@ function App() {
           </Route>
 
           <Route exact path="/:username/decks/create">
-            <form>New Deck Form</form>
+            <NewDeckForm />
           </Route>
 
           <Route exact path="/:username/decks/:deckSlug">
