@@ -4,12 +4,9 @@ import React, { useEffect, useState } from "react";
 import Deck from "./Deck";
 
 export default function DeckList({ decks, title }) {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {});
   return (
     <div className="my-3">
-      <h3>Your {title}</h3>
+      <h3>{title}</h3>
       {decks.length > 0 ? (
         <div className="d-flex flex-wrap">
           {decks.map((deck) => (
@@ -17,7 +14,7 @@ export default function DeckList({ decks, title }) {
           ))}
         </div>
       ) : (
-        <p>Nothing here yet!</p>
+        `No ${title.toLowerCase()} found.`
       )}
     </div>
   );
