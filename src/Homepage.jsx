@@ -6,7 +6,7 @@
 // TODO - Handle 404: User Not Found
 
 import { useEffect, useState } from "react";
-import DeckList from "./deck/DeckList";
+import DeckList from "./deckComponents/DeckList";
 import slugify from "react-slugify";
 import { useParams } from "react-router-dom";
 import CardifyApi from "./api";

@@ -1,5 +1,5 @@
 import React from "react";
-import SearchForm from "../forms/SearchForm";
+import SearchForm from "../formComponents/SearchForm";
 
 export default function LoggedInNav({ username }) {
   return (

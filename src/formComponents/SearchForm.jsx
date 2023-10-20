@@ -1,28 +1,21 @@
 /* Renders a form that searches the DB for matching deck names and tag names. */
 
 import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
 import CardifyApi from "../api";
-import DeckList from "../deck/DeckList";
+import DeckList from "../deckComponents/DeckList"; // This is the ONLY line you need to keep if things get totally fucked
 import Loading from "../Loading";
 
 export default function SearchForm() {
   const [decks, setDecks] = useState([]);
-  const [term, setTerm] = useState("");
+  const [formState, setFormState] = useState({ searchTerm: "" });
   const [isLoading, setIsLoading] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
 
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm();
-
-  async function onSubmit(data) {
+  async function handleChange(e) {
+    setFormState({ ...formState, [e.target.name]: e.target.value });
     try {
-      const { searchTerm } = data;
       setIsLoading(true);
+      console.log(searchTerm);
       const result = await CardifyApi.search(searchTerm);
       setDecks(result.decks);
       setIsLoading(false);
@@ -32,45 +25,31 @@ export default function SearchForm() {
     }
   }
 
+  const { searchTerm } = formState;
+
   return (
     <div className="my-5">
       <h1>Search page</h1>
-      <form role="search" onSubmit={handleSubmit(onSubmit)}>
+      <form role="search">
         <div className="d-flex">
           <input
+            onChange={handleChange}
             className="form-control me-2"
+            name="searchTerm"
+            value={searchTerm}
             type="search"
-            placeholder={
-              errors.searchTerm ? "Input required" : "Search for a deck"
-            }
             aria-label="Search"
             id="search-form"
-            {...register("searchTerm", { required: true })}
           />
-
-          {isLoading ? (
-            <button className="btn btn-light" disabled>
-              Search
-            </button>
-          ) : (
-            <button
-              className={
-                errors.searchTerm ? "btn btn-danger" : "btn btn-outline-light"
-              }
-              type="submit"
-            >
-              Search
-            </button>
-          )}
         </div>
       </form>
-
-      {hasSearched &&
+      {searchTerm !== "" && <DeckList decks={decks} title={"Matches"} />}
+      {/* {hasSearched &&
         (isLoading ? (
           <Loading />
         ) : (
           <DeckList decks={decks} title={"Matches"} />
-        ))}
+        ))} */}
     </div>
   );
 }

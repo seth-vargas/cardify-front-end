@@ -1,15 +1,16 @@
 /* This component handles the routing and determines what other components are rendered. */
 
-import Navbar from "./Navbar/Navbar";
+import Navbar from "./navbarComponents/Navbar";
 import LandingPage from "./LandingPage";
-import LoginForm from "./forms/LoginForm";
-import SearchForm from "./forms/SearchForm";
-import NewDeckForm from "./forms/NewDeckForm";
+import LoginForm from "./formComponents/LoginForm";
+import SearchForm from "./formComponents/SearchForm";
+import NewDeckForm from "./formComponents/NewDeckForm";
 import Homepage from "./Homepage";
-import CardList from "./deck/CardList";
+import CardList from "./deckComponents/CardList";
 
 import { Switch, Route } from "react-router-dom";
-const user = { username: "seth" };
+import NewUserForm from "./formComponents/NewUserForm";
+const user = { username: "user1" };
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
           </Route>
 
           <Route exact path="/signup">
-            <form>Sign up form</form>
+            <NewUserForm />
           </Route>
 
           <Route exact path="/search">

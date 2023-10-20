@@ -7,7 +7,6 @@ import FlashCard from "./FlashCard";
 import Loading from "../Loading";
 import TagList from "./TagList";
 import DeckInfo from "./DeckInfo";
-import Flashcards from "./CardCarousel";
 
 export default function CardList() {
   const { username, deckSlug } = useParams();
@@ -40,7 +39,6 @@ export default function CardList() {
       <div>
         <h1>{deck.title}</h1>
         <TagList tags={deck.tags} />
-        <Flashcards deck={deck} />
         <hr />
         <DeckInfo username={username} />
       </div>

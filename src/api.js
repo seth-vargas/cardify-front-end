@@ -8,17 +8,15 @@ export default class CardifyApi {
     const result = await axios.get(`${BASE_API_URL}/users/`);
   }
 
+  static async createUser({ username, password }) {}
+
   static async getUser(username) {
     const result = await axios.get(`${BASE_API_URL}/users/${username}`);
     return result.data;
   }
 
-  static async createDeck({ username, title, isPublic }) {
-    const result = await axios.post(`${BASE_API_URL}/decks`, {
-      username,
-      title,
-      isPublic,
-    });
+  static async createDeck(data) {
+    const result = await axios.post(`${BASE_API_URL}/decks`, data);
     return result.data;
   }
 

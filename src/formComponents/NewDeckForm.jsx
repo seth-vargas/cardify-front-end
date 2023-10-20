@@ -1,10 +1,15 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useParams, useHistory } from "react-router-dom";
+
 import CardifyApi from "../api";
+import DefaultInput from "./DefaultInput";
+import TextAreaInput from "./TextAreaInput";
+import CheckBoxInput from "./CheckBoxInput";
 
 export default function NewDeckForm() {
   const { username } = useParams();
+  const history = useHistory();
 
   const {
     register,
@@ -14,40 +19,33 @@ export default function NewDeckForm() {
 
   async function onSubmit(data) {
     data.username = username;
-    const { deck } = await CardifyApi.createDeck(data);
-    console.log(deck);
+    try {
+      const { deck } = await CardifyApi.createDeck(data);
+      history.push(`/${username}/decks/${deck.slug}`);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return (
     <div className="my-5">
       <h1>Make a new deck</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="mb-3">
-          <label htmlFor="title" className="form-label">
-            Deck title
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="title"
-            placeholder="Title"
-            {...register("title")}
+      <div className="d-flex justify-content-center">
+        <form className="w-50 m-5 p-5" onSubmit={handleSubmit(onSubmit)}>
+          <DefaultInput placeholder="Title" name="title" register={register} />
+          <TextAreaInput
+            name="description"
+            placeholder="Description"
+            register={register}
           />
-        </div>
-        <div className="mb-3 form-check">
-          <input
-            type="checkbox"
-            className="form-check-input"
-            id="isPublic"
-            {...register("isPublic")}
+          <CheckBoxInput
+            name="isPublic"
+            placeholder="Make Public"
+            register={register}
           />
-          <label className="form-check-label" htmlFor="isPublic">
-            Public
-          </label>
-        </div>
-
-        <button className="btn btn-primary">Create new deck!</button>
-      </form>
+          <button className="btn btn-dark w-100 mt-2">Sign up!</button>
+        </form>
+      </div>
     </div>
   );
 }

@@ -7,9 +7,14 @@ export default function DeckInfo({ username }) {
         <small>created by</small>
         <p className="lead">{username}</p>
       </div>
-      <button className="btn btn-outline-dark ">
-        <i className="fa-regular fa-pen-to-square"></i>
-      </button>
+      <div>
+        <button className="btn btn-outline-dark me-1">
+          <i className="fa-regular fa-pen-to-square"></i>
+        </button>
+        <button className="btn btn-outline-danger ">
+          <i className="fa-regular fa-trash-can"></i>
+        </button>
+      </div>
     </div>
   );
 }

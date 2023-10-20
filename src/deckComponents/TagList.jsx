@@ -2,16 +2,12 @@ import React from "react";
 
 export default function TagList({ tags }) {
   return (
-    <div className="my-1">
+    <span>
       {tags.map((tagname) => (
-        <a
-          key={tagname}
-          href={`/decks/tags/${tagname}`}
-          className="badge rounded-pill text-bg-info"
-        >
+        <span key={tagname} className="badge text-bg-info bg-opacity-50">
           {tagname}
-        </a>
+        </span>
       ))}
-    </div>
+    </span>
   );
 }

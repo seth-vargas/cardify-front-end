@@ -8,7 +8,7 @@ export default function DeckList({ decks, title }) {
     <div className="my-3">
       <h3>{title}</h3>
       {decks.length > 0 ? (
-        <div className="d-flex flex-wrap">
+        <div className="row row-cols-1 row-cols-md-3 g-3">
           {decks.map((deck) => (
             <InfoCard deck={deck} key={deck.id} />
           ))}

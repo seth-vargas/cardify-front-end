@@ -5,19 +5,25 @@ import TagList from "./TagList";
 
 export default function InfoCard({ deck }) {
   return (
-    <div className="card me-3 mb-3">
-      <div className="card-body">
-        <h5 className="card-title">{deck.title}</h5>
-        <h6 className="card-subtitle mb-2 text-body-secondary">
-          Made by {deck.username}
-        </h6>
-        <TagList tags={deck.tags} />
+    <div className="col-sm-6 mb-3 mb-sm-0">
+      <div className="card h-100 ">
+        <div className="card-body">
+          <h5 className="card-title">{deck.title}</h5>
+          <p className="card-text">
+            {deck.tags.length !== 0 && <TagList tags={deck.tags} />}
+          </p>
+        </div>
+        <div className="mt-4">
+          <div className="card-footer">
+            <small className="text-body-secondary">
+              Made by {deck.username}
+            </small>
+          </div>
+        </div>
         <a
           href={`/${deck.username}/decks/${deck.slug}`}
-          className="btn btn-dark"
-        >
-          Open Deck
-        </a>
+          className="stretched-link"
+        ></a>
       </div>
     </div>
   );
