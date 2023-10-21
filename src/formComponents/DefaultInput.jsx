@@ -6,6 +6,7 @@ export default function DefaultInput({
   name,
   type = "text",
   register,
+  validation = { required: false },
 }) {
   return (
     <div className="form-floating mb-3">
@@ -13,7 +14,7 @@ export default function DefaultInput({
         type={type}
         className="form-control"
         placeholder={placeholder}
-        {...register(`${name}`)}
+        {...register(`${name}`, validation)}
       />
       <label htmlFor={name} className="form-label">
         {placeholder}
