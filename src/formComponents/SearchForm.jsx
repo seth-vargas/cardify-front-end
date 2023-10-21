@@ -18,6 +18,7 @@ export default function SearchForm() {
   } = useForm();
 
   async function onSubmit({ searchTerm }) {
+    if (searchTerm.trim() === "") return;
     try {
       setIsLoading(true);
       const { decks } = await CardifyApi.search(searchTerm);
