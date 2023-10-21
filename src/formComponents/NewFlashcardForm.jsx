@@ -17,10 +17,14 @@ export default function NewFlashcardForm() {
   } = useForm();
 
   async function onSubmit(data) {
-    data.username = username;
-    data.slug = deckSlug;
-    const { card } = await CardifyApi.createFlashcard(data);
-    history.push(`/${username}/decks/${deckSlug}`);
+    try {
+      data.username = username;
+      data.slug = deckSlug;
+      const { card } = await CardifyApi.createFlashcard(data);
+      history.push(`/${username}/decks/${deckSlug}`);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return (
