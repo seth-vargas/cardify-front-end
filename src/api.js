@@ -3,12 +3,14 @@ import axios from "axios";
 const BASE_API_URL = "http://localhost:3000/api";
 
 export default class CardifyApi {
-  static async authenticate(username, password) {
-    // TODO: Finish this query! I need to make a route where we can authenticate the user in /back-end/routes/users
-    const result = await axios.get(`${BASE_API_URL}/users/`);
+  static async login(data) {
+    console.log(`Logging ${username} in`);
+    console.log("data: ", data);
   }
 
-  static async createUser({ username, password }) {}
+  static async createUser({ username, password }) {
+    console.log("Creating new user");
+  }
 
   static async getUser(username) {
     const result = await axios.get(`${BASE_API_URL}/users/${username}`);
@@ -40,6 +42,11 @@ export default class CardifyApi {
       `${BASE_API_URL}/decks?term=${searchTerm}&isPublic=true&orderBy=${orderBy}`
     );
     return result.data;
+  }
+
+  static async createFlashcard(data) {
+    console.log("Creating new flashcard");
+    console.log("data: ", data);
   }
 
   static async getCards(username, deckSlug) {
