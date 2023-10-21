@@ -4,12 +4,16 @@ const BASE_API_URL = "http://localhost:3000/api";
 
 export default class CardifyApi {
   static async login(data) {
-    console.log(`Logging ${username} in`);
-    console.log("data: ", data);
+    console.log(`Logging ${username} in`); // TODO: DELETE BEFORE SUBMITTING
+    console.log("data: ", data); // TODO: DELETE BEFORE SUBMITTING
   }
 
-  static async createUser({ username, password }) {
-    console.log("Creating new user");
+  static async createUser(data) {
+    console.log("Creating new user"); // TODO: DELETE BEFORE SUBMITTING
+    console.log("data: ", data); // TODO: DELETE BEFORE SUBMITTING
+
+    const result = await axios.post(`${BASE_API_URL}/users`, data);
+    return result.data;
   }
 
   static async getUser(username) {
@@ -45,8 +49,9 @@ export default class CardifyApi {
   }
 
   static async createFlashcard(data) {
-    console.log("Creating new flashcard");
-    console.log("data: ", data);
+    console.log("Creating new flashcard"); // TODO: DELETE BEFORE SUBMITTING
+    console.log("data: ", data); // TODO: DELETE BEFORE SUBMITTING
+
     const result = await axios.post(
       `${BASE_API_URL}/decks/${data.slug}/cards`,
       data
