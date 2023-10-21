@@ -51,17 +51,11 @@ export default function LoginForm() {
           />
 
           {errors.username || errors.password ? (
-            <button
-              type="submit"
-              className="btn btn-danger w-100 mt-2"
-              disabled
-            >
+            <button className="btn btn-danger w-100 mt-2" disabled>
               Log In
             </button>
           ) : (
-            <button type="submit" className="btn btn-dark w-100 mt-2">
-              Log In
-            </button>
+            <button className="btn btn-dark w-100 mt-2">Log In</button>
           )}
         </form>
       </div>
