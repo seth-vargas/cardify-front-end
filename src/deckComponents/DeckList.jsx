@@ -1,7 +1,7 @@
 /* DeckList: Renders a list of decks belonging to the username found in the URL params. */
 
 import React, { useEffect, useState } from "react";
-import InfoCard from "./InfoCard";
+import DeckCard from "./DeckCard";
 
 export default function DeckList({ decks, title }) {
   return (
@@ -10,7 +10,7 @@ export default function DeckList({ decks, title }) {
       {decks.length > 0 ? (
         <div className="row row-cols-1 row-cols-md-3 g-3">
           {decks.map((deck) => (
-            <InfoCard deck={deck} key={deck.id} />
+            <DeckCard deck={deck} key={deck.id} />
           ))}
         </div>
       ) : (
