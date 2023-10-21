@@ -5,8 +5,8 @@ import LandingPage from "./LandingPage";
 import LoginForm from "./formComponents/LoginForm";
 import SearchForm from "./formComponents/SearchForm";
 import NewDeckForm from "./formComponents/NewDeckForm";
-import Homepage from "./Homepage";
-import CardList from "./deckComponents/CardList";
+import Dashboard from "./Dashboard";
+import DeckView from "./deckComponents/DeckView";
 
 import { Switch, Route } from "react-router-dom";
 import NewUserForm from "./formComponents/NewUserForm";
@@ -38,7 +38,7 @@ function App() {
           </Route>
 
           <Route exact path="/:username">
-            <Homepage />
+            <Dashboard />
           </Route>
 
           <Route exact path="/:username/decks/create">
@@ -46,7 +46,7 @@ function App() {
           </Route>
 
           <Route exact path="/:username/decks/:deckSlug">
-            <CardList />
+            <DeckView />
           </Route>
 
           <Route exact path="*">
