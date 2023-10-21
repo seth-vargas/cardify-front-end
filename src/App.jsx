@@ -10,6 +10,7 @@ import DeckView from "./deckComponents/DeckView";
 
 import { Switch, Route } from "react-router-dom";
 import NewUserForm from "./formComponents/NewUserForm";
+import NewFlashcardForm from "./formComponents/NewFlashcardForm";
 const user = { username: "user1" };
 
 function App() {
@@ -47,6 +48,10 @@ function App() {
 
           <Route exact path="/:username/decks/:deckSlug">
             <DeckView />
+          </Route>
+
+          <Route exact path="/:username/decks/:deckSlug/new-card">
+            <NewFlashcardForm />
           </Route>
 
           <Route exact path="*">
