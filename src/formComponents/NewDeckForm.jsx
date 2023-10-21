@@ -29,7 +29,7 @@ export default function NewDeckForm() {
 
   return (
     <div className="my-5">
-      <h1>Make a new deck</h1>
+      <h1 className="text-center">Create your new deck</h1>
       <div className="d-flex justify-content-center">
         <form className="w-50 m-5 p-5" onSubmit={handleSubmit(onSubmit)}>
           <DefaultInput placeholder="Title" name="title" register={register} />

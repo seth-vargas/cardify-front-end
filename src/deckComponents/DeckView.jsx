@@ -43,7 +43,12 @@ export default function DeckView() {
         <hr />
         <UserActionsBar username={username} />
       </div>
-      <FlashCardList title="Cards in this deck" cards={deck.cards} />
+      <FlashCardList
+        title="Cards in this deck"
+        cards={deck.cards}
+        username={username}
+        slug={deck.slug}
+      />
     </div>
   );
 }

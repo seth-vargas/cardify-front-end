@@ -17,49 +17,52 @@ export default function LoginForm() {
   }
 
   return (
-    <div className="my-5 d-flex justify-content-center">
-      <form
-        action="#"
-        className="d-flex flex-column"
-        style={{ width: "20rem" }}
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        {errors.username && (
-          <small className="text-danger">This field is required</small>
-        )}
-        <div className="mb-3">
-          <label htmlFor="username-input" className="form-label">
-            Enter your username:
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            name="username"
-            id="username"
-            placeholder="Username"
-            {...register("username", { required: true })}
-          />
-        </div>
-        {errors.password && (
-          <small className="text-danger">This field is required</small>
-        )}
-        <div className="mb-3">
-          <label htmlFor="password-input" className="form-label">
-            Enter your password:
-          </label>
-          <input
-            type="password"
-            className="form-control"
-            name="password"
-            id="password"
-            placeholder="Password"
-            {...register("password", { required: true })}
-          />
-        </div>
-        <button type="submit" className="btn btn-outline-dark">
-          Log In
-        </button>
-      </form>
+    <div className="my-5">
+      <h1 className="text-center">Log in to your account</h1>
+      <div className="d-flex justify-content-center">
+        <form
+          action="#"
+          className="w-50 m-5 p-5"
+          style={{ width: "20rem" }}
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          {errors.username && (
+            <small className="text-danger">This field is required</small>
+          )}
+          <div className="mb-3">
+            <label htmlFor="username-input" className="form-label">
+              Enter your username:
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              name="username"
+              id="username"
+              placeholder="Username"
+              {...register("username", { required: true })}
+            />
+          </div>
+          {errors.password && (
+            <small className="text-danger">This field is required</small>
+          )}
+          <div className="mb-3">
+            <label htmlFor="password-input" className="form-label">
+              Enter your password:
+            </label>
+            <input
+              type="password"
+              className="form-control"
+              name="password"
+              id="password"
+              placeholder="Password"
+              {...register("password", { required: true })}
+            />
+          </div>
+          <button type="submit" className="btn btn-outline-dark">
+            Log In
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
