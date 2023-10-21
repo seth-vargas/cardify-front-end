@@ -19,7 +19,7 @@ export default function LoggedInNav({ username }) {
         <ul className="navbar-nav me-auto ">
           <li className="nav-item">
             <a className="nav-link" aria-current="page" href={`/${username}`}>
-              Homepage
+              Dashboard
             </a>
           </li>
         </ul>
