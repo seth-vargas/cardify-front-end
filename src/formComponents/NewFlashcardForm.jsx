@@ -5,6 +5,7 @@ import { useParams, useHistory } from "react-router-dom";
 import CardifyApi from "../api";
 import DefaultInput from "./DefaultInput";
 import TextAreaInput from "./TextAreaInput";
+import SubmitButton from "./SubmitButton";
 
 export default function NewFlashcardForm() {
   const { username, deckSlug } = useParams();
@@ -33,36 +34,20 @@ export default function NewFlashcardForm() {
       <div className="d-flex justify-content-center">
         <form className="w-50 m-5 p-5" onSubmit={handleSubmit(onSubmit)}>
           <DefaultInput
-            placeholder={
-              errors.front ? (
-                <p className="text-danger">Question is required</p>
-              ) : (
-                "Question"
-              )
-            }
+            placeholder="Question"
             name="front"
             register={register}
             validation={{ required: true }}
+            errors={errors}
           />
           <TextAreaInput
-            placeholder={
-              errors.back ? (
-                <p className="text-danger">Answer is required</p>
-              ) : (
-                "Answer"
-              )
-            }
+            placeholder="Answer"
             name="back"
             register={register}
             validation={{ required: true }}
+            errors={errors}
           />
-          {errors.front || errors.back ? (
-            <button className="btn btn-danger w-100 mt-2" disabled>
-              Add card!
-            </button>
-          ) : (
-            <button className="btn btn-dark w-100 mt-2">Add card!</button>
-          )}
+          <SubmitButton text="Create new card" errors={errors} />
         </form>
       </div>
     </div>

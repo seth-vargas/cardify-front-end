@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 
 import CardifyApi from "../api";
 import DefaultInput from "./DefaultInput";
+import SubmitButton from "./SubmitButton";
 
 export default function LoginForm() {
   const {
@@ -25,38 +26,21 @@ export default function LoginForm() {
       <div className="d-flex justify-content-center">
         <form className="w-50 m-5 p-5" onSubmit={handleSubmit(onSubmit)}>
           <DefaultInput
-            placeholder={
-              errors.username ? (
-                <p className="text-danger">Username is required</p>
-              ) : (
-                "Username"
-              )
-            }
+            placeholder="Username"
             name="username"
             register={register}
             validation={{ required: true }}
+            errors={errors}
           />
           <DefaultInput
-            placeholder={
-              errors.password ? (
-                <p className="text-danger">Password is required</p>
-              ) : (
-                "Password"
-              )
-            }
+            placeholder="Password"
             name="password"
             register={register}
             type="password"
             validation={{ required: true }}
+            errors={errors}
           />
-
-          {errors.username || errors.password ? (
-            <button className="btn btn-danger w-100 mt-2" disabled>
-              Log In
-            </button>
-          ) : (
-            <button className="btn btn-dark w-100 mt-2">Log In</button>
-          )}
+          <SubmitButton text="Log In" errors={errors} />
         </form>
       </div>
     </div>

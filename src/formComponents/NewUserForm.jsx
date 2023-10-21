@@ -1,25 +1,30 @@
-import React from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
 
 import CardifyApi from "../api";
 import DefaultInput from "./DefaultInput";
-import GroupInput from "./GroupInput";
+import CheckBoxInput from "./CheckBoxInput";
+import SubmitButton from "./SubmitButton";
 
 export default function NewUserForm() {
-  const { register, handleSubmit, watch } = useForm();
+  const history = useHistory();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   async function onSubmit(data) {
-    console.log(data);
+    data.isAdmin = false;
     try {
-      setIsLoading(true);
-      const result = await CardifyApi.createUser(data);
-      setIsLoading(false);
+      const { user } = await CardifyApi.createUser(data);
+      history.push(`/${user.username}`);
     } catch (error) {
       console.error(error);
     }
   }
-
-  console.log(watch());
 
   return (
     <div className="my-5">
@@ -30,25 +35,47 @@ export default function NewUserForm() {
             placeholder="Username"
             name="username"
             register={register}
+            validation={{ required: true }}
+            errors={errors}
           />
           <DefaultInput
             placeholder="Password"
             name="password"
             type="password"
             register={register}
+            validation={{ required: true }}
+            errors={errors}
           />
-          <GroupInput
-            placeholders={["First Name", "Last Name"]}
-            names={["firstName", "lastName"]}
+          <DefaultInput
+            placeholder="First Name"
+            name="firstName"
             register={register}
+            validation={{ required: true }}
+            errors={errors}
           />
+          <DefaultInput
+            placeholder="Last Name"
+            name="lastName"
+            register={register}
+            validation={{ required: true }}
+            errors={errors}
+          />
+
           <DefaultInput
             placeholder="Email"
             name="email"
             type="email"
             register={register}
+            validation={{ required: true }}
+            errors={errors}
           />
-          <button className="btn btn-dark w-100 mt-2">Sign up!</button>
+          <CheckBoxInput
+            name="isPublic"
+            placeholder="Make Public"
+            register={register}
+          />
+
+          <SubmitButton text="Sign Up!" errors={errors} />
         </form>
       </div>
     </div>

@@ -6,6 +6,7 @@ import CardifyApi from "../api";
 import DefaultInput from "./DefaultInput";
 import TextAreaInput from "./TextAreaInput";
 import CheckBoxInput from "./CheckBoxInput";
+import SubmitButton from "./SubmitButton";
 
 export default function NewDeckForm() {
   const { username } = useParams();
@@ -32,18 +33,27 @@ export default function NewDeckForm() {
       <h1 className="text-center">Create your new deck</h1>
       <div className="d-flex justify-content-center">
         <form className="w-50 m-5 p-5" onSubmit={handleSubmit(onSubmit)}>
-          <DefaultInput placeholder="Title" name="title" register={register} />
+          <DefaultInput
+            placeholder="Title"
+            name="title"
+            register={register}
+            validation={{ required: true }}
+            errors={errors}
+          />
           <TextAreaInput
             name="description"
             placeholder="Description"
             register={register}
+            validation={{ required: true }}
+            errors={errors}
           />
           <CheckBoxInput
             name="isPublic"
             placeholder="Make Public"
             register={register}
           />
-          <button className="btn btn-dark w-100 mt-2">Sign up!</button>
+
+          <SubmitButton text="Create deck" errors={errors} />
         </form>
       </div>
     </div>

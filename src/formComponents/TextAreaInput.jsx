@@ -5,7 +5,13 @@ export default function TextAreaInput({
   name,
   register,
   validation = { required: false },
+  errors,
 }) {
+  const value = errors[name] ? (
+    <p className="text-danger">{placeholder} is required</p>
+  ) : (
+    <p>{placeholder}</p>
+  );
   return (
     <div className="mb-3 form-floating">
       <textarea
@@ -14,7 +20,7 @@ export default function TextAreaInput({
         {...register(`${name}`, validation)}
       />
       <label htmlFor={name} className="form-label">
-        {placeholder}
+        {value}
       </label>
     </div>
   );

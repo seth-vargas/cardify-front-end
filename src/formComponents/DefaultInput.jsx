@@ -2,12 +2,19 @@ import React from "react";
 import { useForm } from "react-hook-form";
 
 export default function DefaultInput({
-  placeholder,
+  placeholder = "Input",
   name,
   type = "text",
   register,
   validation = { required: false },
+  errors,
 }) {
+  const isRequired = errors[name];
+  const value = isRequired ? (
+    <p className="text-danger">{placeholder} is required</p>
+  ) : (
+    <p>{placeholder}</p>
+  );
   return (
     <div className="form-floating mb-3">
       <input
@@ -17,7 +24,7 @@ export default function DefaultInput({
         {...register(`${name}`, validation)}
       />
       <label htmlFor={name} className="form-label">
-        {placeholder}
+        {value}
       </label>
     </div>
   );
