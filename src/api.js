@@ -47,6 +47,12 @@ export default class CardifyApi {
   static async createFlashcard(data) {
     console.log("Creating new flashcard");
     console.log("data: ", data);
+    const result = await axios.post(
+      `${BASE_API_URL}/decks/${data.slug}/cards`,
+      data
+    );
+
+    return result.data;
   }
 
   static async getCards(username, deckSlug) {

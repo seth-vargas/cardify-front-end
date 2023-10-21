@@ -7,7 +7,7 @@ import DefaultInput from "./DefaultInput";
 import TextAreaInput from "./TextAreaInput";
 
 export default function NewFlashcardForm() {
-  const { username, slug } = useParams();
+  const { username, deckSlug } = useParams();
   const history = useHistory();
 
   const {
@@ -17,7 +17,10 @@ export default function NewFlashcardForm() {
   } = useForm();
 
   async function onSubmit(data) {
-    const result = await CardifyApi.createFlashcard(data);
+    data.username = username;
+    data.slug = deckSlug;
+    const { card } = await CardifyApi.createFlashcard(data);
+    history.push(`/${username}/decks/${deckSlug}`);
   }
 
   return (
