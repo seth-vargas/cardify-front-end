@@ -3,6 +3,9 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
+import CardifyApi from "../api";
+import DefaultInput from "./DefaultInput";
+
 export default function LoginForm() {
   const {
     register,
@@ -10,7 +13,7 @@ export default function LoginForm() {
     formState: { errors },
   } = useForm();
 
-  function onSubmit(data) {
+  async function onSubmit(data) {
     const { username, password } = data;
 
     console.log(username, password);
@@ -20,47 +23,46 @@ export default function LoginForm() {
     <div className="my-5">
       <h1 className="text-center">Log in to your account</h1>
       <div className="d-flex justify-content-center">
-        <form
-          action="#"
-          className="w-50 m-5 p-5"
-          style={{ width: "20rem" }}
-          onSubmit={handleSubmit(onSubmit)}
-        >
-          {errors.username && (
-            <small className="text-danger">This field is required</small>
+        <form className="w-50 m-5 p-5" onSubmit={handleSubmit(onSubmit)}>
+          <DefaultInput
+            placeholder={
+              errors.username ? (
+                <p className="text-danger">Username is required</p>
+              ) : (
+                "Username"
+              )
+            }
+            name="username"
+            register={register}
+            validation={{ required: true }}
+          />
+          <DefaultInput
+            placeholder={
+              errors.password ? (
+                <p className="text-danger">Password is required</p>
+              ) : (
+                "Password"
+              )
+            }
+            name="password"
+            register={register}
+            type="password"
+            validation={{ required: true }}
+          />
+
+          {errors.username || errors.password ? (
+            <button
+              type="submit"
+              className="btn btn-danger w-100 mt-2"
+              disabled
+            >
+              Log In
+            </button>
+          ) : (
+            <button type="submit" className="btn btn-dark w-100 mt-2">
+              Log In
+            </button>
           )}
-          <div className="mb-3">
-            <label htmlFor="username-input" className="form-label">
-              Enter your username:
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              name="username"
-              id="username"
-              placeholder="Username"
-              {...register("username", { required: true })}
-            />
-          </div>
-          {errors.password && (
-            <small className="text-danger">This field is required</small>
-          )}
-          <div className="mb-3">
-            <label htmlFor="password-input" className="form-label">
-              Enter your password:
-            </label>
-            <input
-              type="password"
-              className="form-control"
-              name="password"
-              id="password"
-              placeholder="Password"
-              {...register("password", { required: true })}
-            />
-          </div>
-          <button type="submit" className="btn btn-outline-dark">
-            Log In
-          </button>
         </form>
       </div>
     </div>
