@@ -1,13 +1,20 @@
 import axios from "axios";
 
-const BASE_API_URL = "http://localhost:3000/api";
+const BASE_API_URL = "http://localhost:3000";
 
 export default class CardifyApi {
-  /* Log user in */
+  /* Log user in
+   * returns a token
+   */
 
   static async login(data) {
-    console.log(`Logging ${username} in`); // TODO: DELETE BEFORE SUBMITTING
-    console.log("data: ", data); // TODO: DELETE BEFORE SUBMITTING
+    try {
+      const result = await axios.post(`${BASE_API_URL}/auth/token`, data);
+      return result.data;
+    } catch (error) {
+      console.log(error);
+      return "User not authorized";
+    }
   }
 
   /* Create new user in db */
