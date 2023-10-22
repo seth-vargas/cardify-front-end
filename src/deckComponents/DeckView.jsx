@@ -8,6 +8,9 @@ import Loading from "../Loading";
 import TagList from "./TagList";
 import FlashCardList from "./FlashCardList";
 import UserActionsBar from "./UserActionsBar";
+import DeleteDeckModal from "./DeleteDeckModal";
+import EditDeckModal from "./EditDeckModal";
+import CreateFlashcardModal from "./CreateFlashcardModal";
 
 export default function DeckView() {
   const { username, deckSlug } = useParams();
@@ -29,7 +32,7 @@ export default function DeckView() {
       }
     }
     fetchData(username, deckSlug);
-  }, [username]);
+  }, [username, deck]);
 
   if (isLoading) {
     return <Loading />;
@@ -37,6 +40,10 @@ export default function DeckView() {
 
   return (
     <div className="my-5">
+      <DeleteDeckModal deck={deck} />
+      <EditDeckModal deck={deck} />
+      <CreateFlashcardModal deck={deck} />
+
       <div>
         <h1>{deck.title}</h1>
         <TagList tags={deck.tags} />
