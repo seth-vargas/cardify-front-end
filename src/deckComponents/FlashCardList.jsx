@@ -7,10 +7,11 @@ export default function FlashCardList({ title, cards, username, slug }) {
       <h4 className="mt-5">{title}</h4>
       <div className="row my-3">
         <a
-          href={`/${username}/decks/${slug}/new-card`}
-          className="btn btn-success"
+          data-bs-toggle="modal"
+          data-bs-target="#createFlashcardModal"
+          className="btn btn-outline-success"
         >
-          Add a card!
+          Create a new flashcard!
         </a>
       </div>
       <div className="row">
