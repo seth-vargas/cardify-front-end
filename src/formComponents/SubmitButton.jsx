@@ -15,5 +15,9 @@ export default function SubmitButton({ text, errors }) {
         Please fill in form completely.
       </button>
     );
-  return <button className="btn btn-dark w-100 mt-2">{text}</button>;
+  return (
+    <button className="btn btn-dark w-100 mt-2" data-bs-dismiss="modal">
+      {text}
+    </button>
+  );
 }
