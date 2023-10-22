@@ -32,7 +32,7 @@ export default function DeckView() {
       }
     }
     fetchData(username, deckSlug);
-  }, [username, deck]);
+  }, [username]);
 
   if (isLoading) {
     return <Loading />;
@@ -42,17 +42,40 @@ export default function DeckView() {
     <div className="my-5">
       <DeleteDeckModal deck={deck} />
       <EditDeckModal deck={deck} />
-      <CreateFlashcardModal deck={deck} />
+      <CreateFlashcardModal deck={deck} cards={cards} setCards={setCards} />
 
-      <div>
-        <h1>{deck.title}</h1>
-        <TagList tags={deck.tags} />
-        <hr />
-        <UserActionsBar username={username} />
+      <div className="row align-items-center">
+        <div className="col">
+          <h1>{deck.title}</h1>
+        </div>
+        <div className="col">
+          <UserActionsBar />
+        </div>
       </div>
+
+      <TagList tags={deck.tags} />
+
+      {/* This is where the carousel would go! */}
+
+      <hr />
+
+      <div className="row text-bg-light rounded p-3 align-items-center">
+        <strong>
+          Created by{" "}
+          <a href={`/${username}`} className="text-decoration-none">
+            {username}
+          </a>
+        </strong>
+
+        <div className="row mt-3">
+          <dt>Description:</dt>
+          <dd>{deck.description}</dd>
+        </div>
+      </div>
+
       <FlashCardList
         title="Cards in this deck"
-        cards={deck.cards}
+        cards={cards}
         username={username}
         slug={deck.slug}
       />

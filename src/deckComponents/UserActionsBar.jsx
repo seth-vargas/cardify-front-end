@@ -1,14 +1,10 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-export default function UserActionsBar({ username }) {
+export default function UserActionsBar() {
   const { deckSlug } = useParams();
   return (
-    <div className="d-flex align-items-center justify-content-between my-1">
-      <div>
-        <small>created by</small>
-        <p className="lead">{username}</p>
-      </div>
+    <div className="d-flex align-items-center justify-content-end">
       <div>
         <a
           data-bs-toggle="modal"

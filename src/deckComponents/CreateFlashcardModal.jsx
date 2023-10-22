@@ -5,7 +5,7 @@ import CardifyApi from "../api";
 import EditDeckForm from "../formComponents/EditDeckForm";
 import NewFlashcardForm from "../formComponents/NewFlashcardForm";
 
-export default function CreateFlashcardModal() {
+export default function CreateFlashcardModal({ cards, setCards }) {
   const { username } = useParams();
   const history = useHistory();
 
@@ -34,7 +34,7 @@ export default function CreateFlashcardModal() {
             ></button>
           </div>
           <div className="modal-body">
-            <NewFlashcardForm />
+            <NewFlashcardForm existingCards={cards} setCards={setCards} />
           </div>
           <div className="modal-footer">
             <button className="btn btn-secondary" data-bs-dismiss="modal">
