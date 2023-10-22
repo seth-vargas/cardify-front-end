@@ -1,12 +1,25 @@
+/* Library imports */
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useParams, useHistory } from "react-router-dom";
 
+/* Component imports */
 import CardifyApi from "../api";
 import DefaultInput from "./DefaultInput";
 import TextAreaInput from "./TextAreaInput";
 import CheckBoxInput from "./CheckBoxInput";
 import SubmitButton from "./SubmitButton";
+
+/* Helper imports */
+import { commonFormClassName } from "../helpers";
+
+/**
+ * Renders form interface for users to create a new deck.
+
+  Required input: 
+  - title 
+  - description
+ */
 
 export default function NewDeckForm() {
   const { username } = useParams();
@@ -20,6 +33,7 @@ export default function NewDeckForm() {
 
   async function onSubmit(data) {
     data.username = username;
+    data.isPublic = false;
     try {
       const { deck } = await CardifyApi.createDeck(data);
       history.push(`/${username}/decks/${deck.slug}`);
@@ -30,9 +44,11 @@ export default function NewDeckForm() {
 
   return (
     <div className="my-5">
-      <h1 className="text-center">Create your new deck</h1>
-      <div className="d-flex justify-content-center">
-        <form className="w-50 m-5 p-5" onSubmit={handleSubmit(onSubmit)}>
+      <div className="row justify-content-center">
+        <h1 className="col-6 text-center">Create your new deck</h1>
+      </div>
+      <div className="row justify-content-center">
+        <form className={commonFormClassName} onSubmit={handleSubmit(onSubmit)}>
           <DefaultInput
             placeholder="Title"
             name="title"
@@ -40,17 +56,13 @@ export default function NewDeckForm() {
             validation={{ required: true }}
             errors={errors}
           />
+
           <TextAreaInput
             name="description"
             placeholder="Description"
             register={register}
             validation={{ required: true }}
             errors={errors}
-          />
-          <CheckBoxInput
-            name="isPublic"
-            placeholder="Make Public"
-            register={register}
           />
 
           <SubmitButton text="Create deck" errors={errors} />

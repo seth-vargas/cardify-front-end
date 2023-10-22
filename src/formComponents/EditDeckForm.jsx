@@ -6,6 +6,7 @@ import CardifyApi from "../api";
 import DefaultInput from "./DefaultInput";
 import CheckBoxInput from "./CheckBoxInput";
 import SubmitButton from "./SubmitButton";
+import TextAreaInput from "./TextAreaInput";
 
 export default function EditDeckForm() {
   const { username } = useParams();
@@ -28,17 +29,18 @@ export default function EditDeckForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <DefaultInput
-        name={"title"}
+        name="title"
         placeholder="Title"
         register={register}
         errors={errors}
       />
-      <CheckBoxInput
-        name="isPublic"
-        placeholder="Make Public?"
+      <TextAreaInput
+        name="description"
+        placeholder="Description"
         register={register}
+        errors={errors}
       />
-      <SubmitButton text="Save changes" errors={errors} />
+      <SubmitButton text="Save changes" errors={errors} bsDismiss="modal" />
     </form>
   );
 }

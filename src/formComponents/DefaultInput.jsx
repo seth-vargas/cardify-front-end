@@ -1,6 +1,8 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
+/** Basic input element. */
+
 export default function DefaultInput({
   placeholder = "Input",
   name,
@@ -22,6 +24,7 @@ export default function DefaultInput({
         className="form-control"
         placeholder={placeholder}
         {...register(`${name}`, validation)}
+        autoComplete={name}
       />
       <label htmlFor={name} className="form-label">
         {value}

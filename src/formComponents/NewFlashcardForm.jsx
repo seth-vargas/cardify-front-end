@@ -1,4 +1,3 @@
-import React from "react";
 import { useForm } from "react-hook-form";
 import { useParams, useHistory } from "react-router-dom";
 
@@ -7,7 +6,7 @@ import DefaultInput from "./DefaultInput";
 import TextAreaInput from "./TextAreaInput";
 import SubmitButton from "./SubmitButton";
 
-export default function NewFlashcardForm() {
+export default function NewFlashcardForm({ existingCards, setCards }) {
   const { username, deckSlug } = useParams();
   const history = useHistory();
 
@@ -22,6 +21,7 @@ export default function NewFlashcardForm() {
       data.username = username;
       data.slug = deckSlug;
       const { card } = await CardifyApi.createFlashcard(data);
+      setCards([...existingCards, card]);
       history.push(`/${username}/decks/${deckSlug}`);
     } catch (error) {
       console.error(error);
@@ -44,7 +44,7 @@ export default function NewFlashcardForm() {
         validation={{ required: true }}
         errors={errors}
       />
-      <SubmitButton text="Create new card" errors={errors} />
+      <SubmitButton text="Create new card" errors={errors} bsDismiss="modal" />
     </form>
   );
 }

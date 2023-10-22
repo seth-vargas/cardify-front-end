@@ -1,13 +1,17 @@
 /* Renders a form to gather the username and password from a user. */
 
-import React from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 import CardifyApi from "../api";
 import DefaultInput from "./DefaultInput";
 import SubmitButton from "./SubmitButton";
 
+import { commonFormClassName } from "../helpers";
+
 export default function LoginForm() {
+  const [errorMessage, setErrorMessage] = useState();
+
   const {
     register,
     handleSubmit,
@@ -15,16 +19,29 @@ export default function LoginForm() {
   } = useForm();
 
   async function onSubmit(data) {
-    const { username, password } = data;
+    const { token } = await CardifyApi.login(data);
 
-    console.log(username, password);
+    if (token) {
+      // user is valid - log them in!
+      console.log("logging in");
+    } else {
+      // users information was not valid - let them know!
+      setErrorMessage("Invalid credentials!");
+    }
   }
 
   return (
     <div className="my-5">
-      <h1 className="text-center">Log in to your account</h1>
-      <div className="d-flex justify-content-center">
-        <form className="w-50 m-5 p-5" onSubmit={handleSubmit(onSubmit)}>
+      <div className="row justify-content-center">
+        <h1 className="col-6 text-center my-5">Log in to your account</h1>
+      </div>
+      <div className="row justify-content-center">
+        <form className={commonFormClassName} onSubmit={handleSubmit(onSubmit)}>
+          {errorMessage && (
+            <div className="alert alert-danger text-center" role="alert">
+              {errorMessage}
+            </div>
+          )}
           <DefaultInput
             placeholder="Username"
             name="username"

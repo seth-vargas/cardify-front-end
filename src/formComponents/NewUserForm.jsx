@@ -1,11 +1,28 @@
+/* Library imports */
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 
+/* Component imports */
 import CardifyApi from "../api";
 import DefaultInput from "./DefaultInput";
 import CheckBoxInput from "./CheckBoxInput";
 import SubmitButton from "./SubmitButton";
+
+/* Helper imports */
+import { commonFormClassName } from "../helpers";
+
+/** 
+  Renders form interface for users to create a new account.
+  
+  Required input:
+  - username
+  - password
+  - firstName
+  - lastName
+  - email
+  - isPublic.
+ */
 
 export default function NewUserForm() {
   const history = useHistory();
@@ -17,7 +34,6 @@ export default function NewUserForm() {
   } = useForm();
 
   async function onSubmit(data) {
-    data.isAdmin = false;
     try {
       const { user } = await CardifyApi.createUser(data);
       history.push(`/${user.username}`);
@@ -28,9 +44,11 @@ export default function NewUserForm() {
 
   return (
     <div className="my-5">
-      <h1 className="text-center">Create your account</h1>
-      <div className="d-flex justify-content-center">
-        <form className="w-50 m-5 p-5" onSubmit={handleSubmit(onSubmit)}>
+      <div className="row justify-content-center">
+        <h1 className="col-6 text-center my-5">Create your account</h1>
+      </div>
+      <div className="row justify-content-center">
+        <form className={commonFormClassName} onSubmit={handleSubmit(onSubmit)}>
           <DefaultInput
             placeholder="Username"
             name="username"

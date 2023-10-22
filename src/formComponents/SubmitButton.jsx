@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function SubmitButton({ text, errors }) {
+export default function SubmitButton({ text, errors, bsDismiss = "" }) {
   function hasErrors(obj) {
     for (const key in obj) {
       if (obj[key].type === "required") {
@@ -16,7 +16,7 @@ export default function SubmitButton({ text, errors }) {
       </button>
     );
   return (
-    <button className="btn btn-dark w-100 mt-2" data-bs-dismiss="modal">
+    <button className="btn btn-dark w-100 mt-2" data-bs-dismiss={bsDismiss}>
       {text}
     </button>
   );
