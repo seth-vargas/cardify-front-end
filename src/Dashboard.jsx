@@ -6,7 +6,7 @@
 // TODO - Handle 404: User Not Found
 
 import { useEffect, useState } from "react";
-import { useParams, useHistory, Link } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import slugify from "react-slugify";
 
 import CardifyApi from "./api";
@@ -19,7 +19,7 @@ export default function Dashboard() {
   const [favorites, setFavorites] = useState([]);
 
   const { username } = useParams();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchData() {
@@ -31,7 +31,7 @@ export default function Dashboard() {
         setIsLoading(false);
       } catch (error) {
         console.error("error fetching data", error);
-        history.push("/404");
+        navigate.push("/404");
       }
     }
     fetchData();

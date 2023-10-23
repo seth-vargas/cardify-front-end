@@ -1,7 +1,7 @@
 /* Library imports */
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 /* Component imports */
 import CardifyApi from "../api";
@@ -25,7 +25,7 @@ import { commonFormClassName } from "../helpers";
  */
 
 export default function NewUserForm() {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -36,7 +36,7 @@ export default function NewUserForm() {
   async function onSubmit(data) {
     try {
       const { user } = await CardifyApi.createUser(data);
-      history.push(`/${user.username}`);
+      navigate.push(`/${user.username}`);
     } catch (error) {
       console.error(error);
     }

@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 
 export default function EditFlashcardForm() {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { username, deckSlug } = useParams();
 
   const {
@@ -14,7 +14,7 @@ export default function EditFlashcardForm() {
   async function onSubmit(data) {
     try {
       const { flashcard } = await CardifyApi.editFlashcard(data);
-      history.push(`/${username}/decks/${deckSlug}`);
+      navigate.push(`/${username}/decks/${deckSlug}`);
     } catch (error) {
       console.error(error);
     }

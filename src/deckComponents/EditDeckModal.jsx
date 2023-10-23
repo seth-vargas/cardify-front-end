@@ -1,12 +1,12 @@
 import React from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import CardifyApi from "../api";
 import EditDeckForm from "../formComponents/EditDeckForm";
 
 export default function EditDeckModal({ deck }) {
   const { username } = useParams();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   return (
     <div

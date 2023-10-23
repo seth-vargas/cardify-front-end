@@ -1,15 +1,15 @@
 import React from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import CardifyApi from "../api";
 
 export default function DeleteDeckModal({ deck }) {
   const { username } = useParams();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   async function deleteDeck() {
     await CardifyApi.deleteDeck(deck.id);
-    history.push(`/${username}`);
+    navigate.push(`/${username}`);
   }
 
   return (

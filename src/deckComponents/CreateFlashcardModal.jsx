@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import CardifyApi from "../api";
 import EditDeckForm from "../formComponents/EditDeckForm";
@@ -7,7 +7,7 @@ import NewFlashcardForm from "../formComponents/NewFlashcardForm";
 
 export default function CreateFlashcardModal({ cards, setCards }) {
   const { username } = useParams();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   async function editDeck() {
     await CardifyApi.editDeck(deck.id);

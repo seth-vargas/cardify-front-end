@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function EditUserForm() {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -12,7 +12,7 @@ export default function EditUserForm() {
   async function onSubmit(data) {
     try {
       const { user } = await CardifyApi.editUser(data);
-      history.push(`/${user.username}`);
+      navigate.push(`/${user.username}`);
     } catch (error) {
       console.error(error);
     }

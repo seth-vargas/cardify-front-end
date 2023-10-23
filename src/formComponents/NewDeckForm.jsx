@@ -1,7 +1,7 @@
 /* Library imports */
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 /* Component imports */
 import CardifyApi from "../api";
@@ -23,7 +23,7 @@ import { commonFormClassName } from "../helpers";
 
 export default function NewDeckForm() {
   const { username } = useParams();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -36,7 +36,7 @@ export default function NewDeckForm() {
     data.isPublic = false;
     try {
       const { deck } = await CardifyApi.createDeck(data);
-      history.push(`/${username}/decks/${deck.slug}`);
+      navigate.push(`/${username}/decks/${deck.slug}`);
     } catch (error) {
       console.error(error);
     }
