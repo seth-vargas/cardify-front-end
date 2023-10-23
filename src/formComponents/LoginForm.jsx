@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
 
 import CardifyApi from "../api";
 import DefaultInput from "./DefaultInput";
@@ -9,8 +10,10 @@ import SubmitButton from "./SubmitButton";
 
 import { commonFormClassName } from "../helpers";
 
-export default function LoginForm() {
+export default function LoginForm({ setToken, setUsername }) {
   const [errorMessage, setErrorMessage] = useState();
+
+  const history = useHistory();
 
   const {
     register,
@@ -19,11 +22,13 @@ export default function LoginForm() {
   } = useForm();
 
   async function onSubmit(data) {
-    const { token } = await CardifyApi.login(data);
+    const token = await CardifyApi.login(data);
 
     if (token) {
       // user is valid - log them in!
-      console.log("logging in");
+      setToken(token);
+      setUsername(data.username);
+      history.push(`/${data.username}`);
     } else {
       // users information was not valid - let them know!
       setErrorMessage("Invalid credentials!");

@@ -6,18 +6,20 @@
 // TODO - Handle 404: User Not Found
 
 import { useEffect, useState } from "react";
-import DeckList from "./deckComponents/DeckList";
+import { useParams, useHistory } from "react-router-dom";
 import slugify from "react-slugify";
-import { useParams } from "react-router-dom";
+
 import CardifyApi from "./api";
 import Loading from "./Loading";
+import DeckList from "./deckComponents/DeckList";
 
 export default function Dashboard() {
-  const { username } = useParams();
-
   const [isLoading, setIsLoading] = useState(true);
   const [decks, setDecks] = useState([]);
   const [favorites, setFavorites] = useState([]);
+
+  const { username } = useParams();
+  const history = useHistory();
 
   useEffect(() => {
     async function fetchData() {
@@ -29,6 +31,7 @@ export default function Dashboard() {
         setIsLoading(false);
       } catch (error) {
         console.error("error fetching data", error);
+        history.push("/404");
       }
     }
     fetchData();

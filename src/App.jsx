@@ -9,22 +9,28 @@ import Dashboard from "./Dashboard";
 import DeckView from "./deckComponents/DeckView";
 
 import { Switch, Route } from "react-router-dom";
+import { useState } from "react";
 import NewUserForm from "./formComponents/NewUserForm";
 import NewFlashcardForm from "./formComponents/NewFlashcardForm";
 
-const user = { username: "sethvargas" };
+// const user = { username: "sethvargas" };
 
 function App() {
+  const [token, setToken] = useState();
+  const [username, setUsername] = useState();
+
+  console.log(token, username);
+
   return (
     <div>
-      <Navbar username={user.username} />
+      <Navbar username={username} />
       <main className="container">
         <Switch>
           <Route exact path="/">
             <LandingPage />
           </Route>
           <Route exact path="/login">
-            <LoginForm />
+            <LoginForm setToken={setToken} setUsername={setUsername} />
           </Route>
 
           <Route exact path="/signup">
@@ -53,6 +59,12 @@ function App() {
 
           <Route exact path="/:username/decks/:deckSlug/new-card">
             <NewFlashcardForm />
+          </Route>
+
+          <Route exact path="/404">
+            <>
+              <h1>Sorry, we couldn't find that :(</h1>
+            </>
           </Route>
 
           <Route exact path="*">
