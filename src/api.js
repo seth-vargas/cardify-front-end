@@ -3,6 +3,7 @@ import axios from "axios";
 const BASE_API_URL = "http://localhost:3000";
 
 export default class CardifyApi {
+  static token;
   /* Log user in
    * returns a token
    */
@@ -10,10 +11,15 @@ export default class CardifyApi {
   static async login(data) {
     try {
       const result = await axios.post(`${BASE_API_URL}/auth/token`, data);
-      return result.data;
+      const { token } = result.data;
+
+      localStorage.setItem("token", token);
+
+      return token;
     } catch (error) {
       console.log(error);
-      return "User not authorized";
+      localStorage.removeItem("token");
+      return "An error occured during Login.";
     }
   }
 
@@ -30,8 +36,15 @@ export default class CardifyApi {
   /* Grab user data from db */
 
   static async getUser(username) {
-    const result = await axios.get(`${BASE_API_URL}/users/${username}`);
-    return result.data;
+    try {
+      const result = await axios.get(`${BASE_API_URL}/users/${username}`);
+      return result.data;
+    } catch (error) {
+      console.log(error);
+      if (error.response.status === 404) {
+        return 0;
+      }
+    }
   }
 
   /* Create new deck in db */
