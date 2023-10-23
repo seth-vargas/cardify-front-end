@@ -63,6 +63,8 @@ export default class CardifyApi {
 
   static async deleteDeck(deckId) {
     console.log("Deleting...");
+    const result = await axios.delete(`${BASE_API_URL}/decks/${deckId}`);
+    return result.data;
   }
 
   /* Search for decks based on user input
@@ -98,5 +100,13 @@ export default class CardifyApi {
     );
 
     return result.data;
+  }
+
+  static async favorite(username, ownerUsername, deckSlug) {
+    console.log(`Adding ${deckSlug} to ${username}'s favorites.`);
+  }
+
+  static async unfavorite(username, ownerUsername, deckSlug) {
+    console.log(`Removing ${deckSlug} from ${username}'s favorites.`);
   }
 }

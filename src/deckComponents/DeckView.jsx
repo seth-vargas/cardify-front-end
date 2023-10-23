@@ -49,7 +49,7 @@ export default function DeckView() {
           <h1>{deck.title}</h1>
         </div>
         <div className="col">
-          <UserActionsBar />
+          <UserActionsBar deck={deck} />
         </div>
       </div>
 
