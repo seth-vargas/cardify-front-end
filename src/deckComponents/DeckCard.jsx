@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import TagList from "./TagList";
+import { Link } from "react-router-dom";
 
 export default function DeckCard({ deck }) {
   return (
@@ -20,10 +21,10 @@ export default function DeckCard({ deck }) {
             </small>
           </div>
         </div>
-        <a
-          href={`/${deck.username}/decks/${deck.slug}`}
+        <Link
+          to={`/${deck.username}/decks/${deck.slug}`}
           className="stretched-link"
-        ></a>
+        ></Link>
       </div>
     </div>
   );

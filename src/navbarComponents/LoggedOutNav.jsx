@@ -1,14 +1,15 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function LoggedOutNav() {
   return (
     <div>
-      <a href="/login" className="btn btn-primary me-1">
+      <Link className="btn btn-primary me-1" to="/login">
         Log In
-      </a>
-      <a href="/signup" className="btn btn-secondary">
+      </Link>
+      <Link to="/signup" className="btn btn-secondary">
         Sign Up
-      </a>
+      </Link>
     </div>
   );
 }

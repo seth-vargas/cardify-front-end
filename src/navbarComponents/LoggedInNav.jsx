@@ -1,5 +1,6 @@
 import React from "react";
 import SearchForm from "../formComponents/SearchForm";
+import { Link } from "react-router-dom";
 
 export default function LoggedInNav({ username }) {
   return (
@@ -18,32 +19,28 @@ export default function LoggedInNav({ username }) {
       <div className="collapse navbar-collapse" id="navToggle">
         <ul className="navbar-nav me-auto ">
           <li className="nav-item">
-            <a className="nav-link" aria-current="page" href={`/${username}`}>
+            <Link to={`/${username}`} className="nav-link">
               Dashboard
-            </a>
+            </Link>
           </li>
         </ul>
         {/* <SearchForm /> */}
       </div>
       <ul className="navbar-nav me-auto">
         <li className="nav-item">
-          <a className="nav-link" aria-current="page" href="/search">
+          <Link to="/search" className="nav-link">
             <i className="fa-solid fa-magnifying-glass fa-lg"></i>
-          </a>
+          </Link>
         </li>
         <li className="nav-item">
-          <a
-            className="nav-link"
-            aria-current="page"
-            href={`/${username}/decks/create`}
-          >
+          <Link className="nav-link" to={`/${username}/decks/create`}>
             <i className="fa-solid fa-circle-plus fa-lg"></i>
-          </a>
+          </Link>
         </li>
         <li className="nav-item">
-          <a className="nav-link" aria-current="page" href="/my-account">
+          <Link className="nav-link" to="/my-account">
             <i className="fa-solid fa-user fa-lg"></i>
-          </a>
+          </Link>
         </li>
       </ul>
     </>

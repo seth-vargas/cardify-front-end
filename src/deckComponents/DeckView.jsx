@@ -11,6 +11,7 @@ import UserActionsBar from "./UserActionsBar";
 import DeleteDeckModal from "./DeleteDeckModal";
 import EditDeckModal from "./EditDeckModal";
 import CreateFlashcardModal from "./CreateFlashcardModal";
+import { Link } from "react-router-dom";
 
 export default function DeckView() {
   const { username, deckSlug } = useParams();
@@ -62,9 +63,9 @@ export default function DeckView() {
       <div className="row text-bg-light rounded p-3 align-items-center">
         <strong>
           Created by{" "}
-          <a href={`/${username}`} className="text-decoration-none">
+          <Link to={`/${username}`} className="text-decoration-none">
             {username}
-          </a>
+          </Link>
         </strong>
 
         <div className="row mt-3">
