@@ -9,23 +9,19 @@ export default class CardifyApi {
    */
 
   static async login(data) {
-    try {
-      const result = await axios.post(`${BASE_API_URL}/auth/token`, data);
-      const { token } = result.data;
+    const response = await axios.post(`${BASE_API_URL}/auth/token`, data);
 
-      localStorage.setItem("token", token);
+    console.log("api.js:14: ", response.data);
 
-      return token;
-    } catch (error) {
-      console.log(error);
-      localStorage.removeItem("token");
-      return "An error occured during Login.";
-    }
+    const accessToken = response?.data?.token;
+    const user = response?.data?.user;
+
+    return { accessToken, user };
   }
 
   /* Create new user in db */
 
-  static async createUser(data) {
+  static async signup(data) {
     console.log("Creating new user"); // TODO: DELETE BEFORE SUBMITTING
     console.log("data: ", data); // TODO: DELETE BEFORE SUBMITTING
 
