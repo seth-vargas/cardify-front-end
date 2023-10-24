@@ -22,7 +22,7 @@ export default function NewFlashcardForm({ existingCards, setCards }) {
       data.slug = deckSlug;
       const { card } = await CardifyApi.createFlashcard(data);
       setCards([...existingCards, card]);
-      navigate.push(`/${username}/decks/${deckSlug}`);
+      navigate(`/${username}/decks/${deckSlug}`);
     } catch (error) {
       console.error(error);
     }

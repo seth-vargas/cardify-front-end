@@ -14,7 +14,7 @@ export default function EditFlashcardForm() {
   async function onSubmit(data) {
     try {
       const { flashcard } = await CardifyApi.editFlashcard(data);
-      navigate.push(`/${username}/decks/${deckSlug}`);
+      navigate(`/${username}/decks/${deckSlug}`);
     } catch (error) {
       console.error(error);
     }

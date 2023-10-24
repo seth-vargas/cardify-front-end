@@ -12,14 +12,17 @@ import slugify from "react-slugify";
 import CardifyApi from "./api";
 import Loading from "./Loading";
 import DeckList from "./deckComponents/DeckList";
+import useAuth from "./hooks/useAuth";
 
 export default function Dashboard() {
   const [isLoading, setIsLoading] = useState(true);
   const [decks, setDecks] = useState([]);
   const [favorites, setFavorites] = useState([]);
 
-  const { username } = useParams();
+  const { auth } = useAuth();
   const navigate = useNavigate();
+
+  const { username } = useParams();
 
   useEffect(() => {
     async function fetchData() {
@@ -31,7 +34,7 @@ export default function Dashboard() {
         setIsLoading(false);
       } catch (error) {
         console.error("error fetching data", error);
-        navigate.push("/404");
+        navigate("/404");
       }
     }
     fetchData();

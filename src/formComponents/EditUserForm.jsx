@@ -12,7 +12,7 @@ export default function EditUserForm() {
   async function onSubmit(data) {
     try {
       const { user } = await CardifyApi.editUser(data);
-      navigate.push(`/${user.username}`);
+      navigate(`/${user.username}`);
     } catch (error) {
       console.error(error);
     }

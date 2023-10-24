@@ -11,12 +11,13 @@ export default class CardifyApi {
   static async login(data) {
     const response = await axios.post(`${BASE_API_URL}/auth/token`, data);
 
-    console.log("api.js:14: ", response.data);
+    return response.data;
 
-    const accessToken = response?.data?.token;
-    const user = response?.data?.user;
+    // const token = response?.data?.token;
+    // const user = response?.data?.user;
+    // const isAdmin = response?.data?.user.isAdmin;
 
-    return { accessToken, user };
+    // return { token, user, isAdmin };
   }
 
   /* Create new user in db */

@@ -36,7 +36,7 @@ export default function NewDeckForm() {
     data.isPublic = false;
     try {
       const { deck } = await CardifyApi.createDeck(data);
-      navigate.push(`/${username}/decks/${deck.slug}`);
+      navigate(`/${username}/decks/${deck.slug}`);
     } catch (error) {
       console.error(error);
     }

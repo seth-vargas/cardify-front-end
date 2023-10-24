@@ -35,8 +35,8 @@ export default function NewUserForm() {
 
   async function onSubmit(data) {
     try {
-      const { user } = await CardifyApi.createUser(data);
-      navigate.push(`/${user.username}`);
+      const { user } = await CardifyApi.signup(data);
+      navigate("/login");
     } catch (error) {
       console.error(error);
     }

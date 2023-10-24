@@ -2,18 +2,22 @@
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 import CardifyApi from "../api";
+import useAuth from "../hooks/useAuth";
 import DefaultInput from "./DefaultInput";
 import SubmitButton from "./SubmitButton";
 
 import { commonFormClassName } from "../helpers";
 
-export default function LoginForm({ setToken, setUsername }) {
+export default function LoginForm() {
   const [errorMessage, setErrorMessage] = useState();
 
+  const { setAuth } = useAuth();
+
   const navigate = useNavigate();
+  const location = useLocation();
 
   const {
     register,
@@ -22,16 +26,31 @@ export default function LoginForm({ setToken, setUsername }) {
   } = useForm();
 
   async function onSubmit(data) {
-    const token = await CardifyApi.login(data);
+    try {
+      const { token, user } = await CardifyApi.login(data);
 
-    if (token) {
-      // user is valid - log them in!
-      setToken(token);
-      setUsername(data.username);
-      navigate.push(`/${data.username}`);
-    } else {
-      // users information was not valid - let them know!
-      setErrorMessage("Invalid credentials!");
+      console.log("Setting token in localStorage...");
+      localStorage.setItem("token", token);
+      console.log("Token has been set in localStorage!");
+
+      console.log("Setting user in localStorage...");
+      localStorage.setItem("user", JSON.stringify(user));
+      console.log("User has been set in localStorage!");
+
+      console.log("Logging localStorage: ", localStorage);
+
+      setAuth({ token, user, isAdmin: user.isAdmin });
+      navigate(`/${user.username}`);
+    } catch (error) {
+      if (!error?.response) {
+        setErrorMessage("No server response");
+      } else if (error.response?.status === 400) {
+        setErrorMessage("Invalid credentials!");
+      } else if (error.response?.status === 401) {
+        setErrorMessage("Incorrect username or password");
+      } else {
+        setErrorMessage("Login failed");
+      }
     }
   }
 

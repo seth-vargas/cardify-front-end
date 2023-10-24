@@ -9,7 +9,7 @@ export default function DeleteDeckModal({ deck }) {
 
   async function deleteDeck() {
     await CardifyApi.deleteDeck(deck.id);
-    navigate.push(`/${username}`);
+    navigate(`/${username}`);
   }
 
   return (
