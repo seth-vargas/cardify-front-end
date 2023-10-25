@@ -1,7 +1,7 @@
 /* Library imports */
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 /* Component imports */
 import CardifyApi from "../api";
@@ -89,11 +89,21 @@ export default function NewUserForm() {
           />
           <CheckBoxInput
             name="isPublic"
-            placeholder="Make Public"
+            placeholder="Make account public"
             register={register}
           />
 
           <SubmitButton text="Sign Up!" errors={errors} />
+
+          <div className="row my-2">
+            <small className="text-center">
+              Already a user?
+              <br />
+              <Link to="/login" className="text-decoration-none">
+                Log in here.
+              </Link>
+            </small>
+          </div>
         </form>
       </div>
     </div>

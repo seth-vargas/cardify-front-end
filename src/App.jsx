@@ -36,7 +36,6 @@ function App() {
             {/* Protected routes */}
             <Route element={<RequireAuth />}>
               <Route path="search" element={<SearchForm />} />
-              <Route path="logout" />
               <Route path="/:username" element={<Dashboard />} />
               <Route path="/:username/decks/:deckSlug" element={<DeckView />} />
             </Route>

@@ -13,7 +13,7 @@ export default function LandingPage() {
 
   return (
     <div className="jumbotron my-5">
-      <h1 className="display-4">Welcome to Cardify, the flashcard app!</h1>
+      <h1 className="display-1">Welcome to Cardify, the flashcard app!</h1>
       <p className="lead">This is going to blow your mind.</p>
 
       <hr className="my-3" />
@@ -21,8 +21,12 @@ export default function LandingPage() {
         ""
       ) : (
         <div>
-          <button className="btn btn-primary">Log in</button>
-          <button className="btn btn-secondary">Sign up</button>
+          <Link className="btn btn-primary me-2" to="/login">
+            Log in
+          </Link>
+          <Link className="btn btn-secondary" to="/signup">
+            Sign up
+          </Link>
         </div>
       )}
     </div>

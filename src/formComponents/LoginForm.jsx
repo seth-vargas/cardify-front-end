@@ -80,6 +80,15 @@ export default function LoginForm() {
             errors={errors}
           />
           <SubmitButton text="Log In" errors={errors} />
+          <div className="row my-2">
+            <small className="text-center">
+              Don't have an account?
+              <br />
+              <Link to="/signup" className="text-decoration-none">
+                Sign up here.
+              </Link>
+            </small>
+          </div>
         </form>
       </div>
     </div>
