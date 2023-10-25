@@ -2,4 +2,19 @@
 
 /* Common form className */
 
-export const commonFormClassName = "col-6 p-5 rounded bg-light";
+const commonFormClassName = "col-6 p-5 rounded bg-light";
+
+/* gets username from localStorage or context API */
+
+function getUsername() {
+  let username;
+  if (localStorage.getItem("user")) {
+    username = JSON.parse(localStorage.getItem("user")).username;
+  } else if (auth?.user) {
+    username = auth.user.username;
+  }
+
+  return username;
+}
+
+export { commonFormClassName, getUsername };

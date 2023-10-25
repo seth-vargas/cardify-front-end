@@ -1,7 +1,9 @@
 import React from "react";
 import EditUserForm from "./formComponents/EditUserForm";
+import { getUsername } from "./helpers";
 
 export default function EditUserModal() {
+  let username = getUsername();
   return (
     <div
       className="modal fade"

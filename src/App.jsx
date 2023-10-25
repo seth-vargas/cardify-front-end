@@ -6,7 +6,6 @@ import Navbar from "./navbarComponents/Navbar";
 import LandingPage from "./LandingPage";
 import LoginForm from "./formComponents/LoginForm";
 import SearchForm from "./formComponents/SearchForm";
-import NewDeckForm from "./formComponents/NewDeckForm";
 import Dashboard from "./Dashboard";
 import DeckView from "./deckComponents/DeckView";
 import Layout from "./Layout";
@@ -19,21 +18,12 @@ import useAuth from "./hooks/useAuth";
 console.log("Rendering whole app");
 
 function App() {
-  const { auth } = useAuth();
-
-  let username;
-
-  if (localStorage.getItem("user")) {
-    username = JSON.parse(localStorage.getItem("user")).username;
-  } else if (auth?.user) {
-    username = auth.user.username;
-  }
   return (
     <main>
       <Navbar />
       <LogoutModal />
-      <NewDeckModal username={username} />
-      <EditUserModal username={username} />
+      <NewDeckModal />
+      <EditUserModal />
       <main className="container">
         <Routes>
           <Route path="/" element={<Layout />}>
@@ -55,6 +45,10 @@ function App() {
 
             <Route
               path="/404"
+              element={<p>Hmmm. I can't seem to find what you want.</p>}
+            />
+            <Route
+              path="*"
               element={<p>Hmmm. I can't seem to find what you want.</p>}
             />
           </Route>

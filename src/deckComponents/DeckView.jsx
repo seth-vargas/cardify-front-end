@@ -21,7 +21,7 @@ export default function DeckView() {
   const [deck, setDeck] = useState({});
 
   useEffect(() => {
-    async function fetchData(username, deckSlug) {
+    async function fetchData() {
       try {
         const { deck } = await CardifyApi.getCards(username, deckSlug);
 

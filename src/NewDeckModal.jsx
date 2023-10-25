@@ -1,7 +1,10 @@
 import React from "react";
 import NewDeckForm from "./formComponents/NewDeckForm";
+import { getUsername } from "./helpers";
 
-export default function NewDeckModal({ username }) {
+export default function NewDeckModal() {
+  let username = getUsername();
+
   return (
     <div
       className="modal fade"
