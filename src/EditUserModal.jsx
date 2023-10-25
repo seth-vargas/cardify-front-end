@@ -1,24 +1,18 @@
 import React from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import EditUserForm from "./formComponents/EditUserForm";
 
-import CardifyApi from "../api";
-import EditDeckForm from "../formComponents/EditDeckForm";
-
-export default function EditDeckModal({ deck }) {
-  const { username } = useParams();
-  const navigate = useNavigate();
-
+export default function EditUserModal() {
   return (
     <div
       className="modal fade"
-      id="editDeckModal"
+      id="editUserModal"
       tabIndex="-1"
       aria-hidden="true"
     >
-      <div className="modal-dialog">
+      <div className="modal-dialog modal-dialog-centered">
         <div className="modal-content">
           <div className="modal-header">
-            <h1 className="modal-title fs-5">Edit your deck</h1>
+            <h1 className="modal-title fs-5">Log out</h1>
             <button
               type="button"
               className="btn-close"
@@ -27,11 +21,11 @@ export default function EditDeckModal({ deck }) {
             ></button>
           </div>
           <div className="modal-body">
-            <EditDeckForm />
+            <EditUserForm />
           </div>
           <div className="modal-footer">
             <button className="btn btn-secondary" data-bs-dismiss="modal">
-              Close
+              Cancel
             </button>
           </div>
         </div>

@@ -1,4 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import DefaultInput from "./DefaultInput";
+import SubmitButton from "./SubmitButton";
 
 export default function EditUserForm() {
   const navigate = useNavigate();
@@ -19,11 +23,27 @@ export default function EditUserForm() {
   }
 
   return (
-    <div className="my-5">
-      <h1 className="text-center">Edit your account info</h1>
-      <div className="d-flex justify-content-center">
-        <form onSubmit={handleSubmit(onSubmit)} className="w-50 m-5 p-5"></form>
-      </div>
-    </div>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <DefaultInput
+        name="firstName"
+        placeholder="First Name"
+        register={register}
+        errors={errors}
+      />
+      <DefaultInput
+        name="lastName"
+        placeholder="Last Name"
+        register={register}
+        errors={errors}
+      />
+      <DefaultInput
+        name="email"
+        placeholder="Email"
+        register={register}
+        errors={errors}
+        type="email"
+      />
+      <button className="btn btn-outline-dark w-100">Save changes</button>
+    </form>
   );
 }

@@ -22,9 +22,7 @@ export default function DeleteDeckModal({ deck }) {
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
-            <h1 className="modal-title fs-5" id="exampleModalLabel">
-              Delete your deck
-            </h1>
+            <h1 className="modal-title fs-5">Delete your deck</h1>
             <button
               type="button"
               className="btn-close"

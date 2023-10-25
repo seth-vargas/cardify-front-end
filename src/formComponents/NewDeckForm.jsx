@@ -1,7 +1,7 @@
 /* Library imports */
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 /* Component imports */
 import CardifyApi from "../api";
@@ -12,6 +12,7 @@ import SubmitButton from "./SubmitButton";
 
 /* Helper imports */
 import { commonFormClassName } from "../helpers";
+import useAuth from "../hooks/useAuth";
 
 /**
  * Renders form interface for users to create a new deck.
@@ -21,8 +22,7 @@ import { commonFormClassName } from "../helpers";
   - description
  */
 
-export default function NewDeckForm() {
-  const { username } = useParams();
+export default function NewDeckForm({ username }) {
   const navigate = useNavigate();
 
   const {
@@ -43,31 +43,24 @@ export default function NewDeckForm() {
   }
 
   return (
-    <div className="my-5">
-      <div className="row justify-content-center">
-        <h1 className="col-6 text-center">Create your new deck</h1>
-      </div>
-      <div className="row justify-content-center">
-        <form className={commonFormClassName} onSubmit={handleSubmit(onSubmit)}>
-          <DefaultInput
-            placeholder="Title"
-            name="title"
-            register={register}
-            validation={{ required: true }}
-            errors={errors}
-          />
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <DefaultInput
+        placeholder="Title"
+        name="title"
+        register={register}
+        validation={{ required: true }}
+        errors={errors}
+      />
 
-          <TextAreaInput
-            name="description"
-            placeholder="Description"
-            register={register}
-            validation={{ required: true }}
-            errors={errors}
-          />
+      <TextAreaInput
+        name="description"
+        placeholder="Description"
+        register={register}
+        validation={{ required: true }}
+        errors={errors}
+      />
 
-          <SubmitButton text="Create deck" errors={errors} />
-        </form>
-      </div>
-    </div>
+      <SubmitButton text="Create deck" errors={errors} bsDismiss="modal" />
+    </form>
   );
 }

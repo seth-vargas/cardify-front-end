@@ -8,6 +8,7 @@ import CardifyApi from "../api";
 import DefaultInput from "./DefaultInput";
 import CheckBoxInput from "./CheckBoxInput";
 import SubmitButton from "./SubmitButton";
+import useAuth from "../hooks/useAuth";
 
 /* Helper imports */
 import { commonFormClassName } from "../helpers";
@@ -25,6 +26,9 @@ import { commonFormClassName } from "../helpers";
  */
 
 export default function NewUserForm() {
+  const [errorMessage, setErrorMessage] = useState();
+  const { setAuth } = useAuth();
+
   const navigate = useNavigate();
 
   const {
@@ -35,10 +39,23 @@ export default function NewUserForm() {
 
   async function onSubmit(data) {
     try {
-      const { user } = await CardifyApi.signup(data);
-      navigate("/login");
+      // get token and user data from back-end API
+      const { token, user } = await CardifyApi.signup(data);
+
+      // set items in localStorage
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
+
+      // Set auth in Context API
+      setAuth({ token, user, isAdmin: user.isAdmin });
+
+      // redirect to dashboard
+      navigate(`/${user.username}`);
     } catch (error) {
       console.error(error);
+      const { message } = error?.response?.data?.error;
+      console.error(message);
+      setErrorMessage(message);
     }
   }
 
@@ -49,6 +66,12 @@ export default function NewUserForm() {
       </div>
       <div className="row justify-content-center">
         <form className={commonFormClassName} onSubmit={handleSubmit(onSubmit)}>
+          {errorMessage && (
+            <div className="alert alert-danger text-center" role="alert">
+              <i class="fa-solid fa-triangle-exclamation me-2"></i>
+              {errorMessage}
+            </div>
+          )}
           <DefaultInput
             placeholder="Username"
             name="username"
@@ -60,29 +83,6 @@ export default function NewUserForm() {
             placeholder="Password"
             name="password"
             type="password"
-            register={register}
-            validation={{ required: true }}
-            errors={errors}
-          />
-          <DefaultInput
-            placeholder="First Name"
-            name="firstName"
-            register={register}
-            validation={{ required: true }}
-            errors={errors}
-          />
-          <DefaultInput
-            placeholder="Last Name"
-            name="lastName"
-            register={register}
-            validation={{ required: true }}
-            errors={errors}
-          />
-
-          <DefaultInput
-            placeholder="Email"
-            name="email"
-            type="email"
             register={register}
             validation={{ required: true }}
             errors={errors}

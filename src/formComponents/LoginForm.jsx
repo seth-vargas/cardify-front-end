@@ -27,19 +27,17 @@ export default function LoginForm() {
 
   async function onSubmit(data) {
     try {
+      // get token and user data from back-end API
       const { token, user } = await CardifyApi.login(data);
 
-      console.log("Setting token in localStorage...");
+      // set items in localStorage
       localStorage.setItem("token", token);
-      console.log("Token has been set in localStorage!");
-
-      console.log("Setting user in localStorage...");
       localStorage.setItem("user", JSON.stringify(user));
-      console.log("User has been set in localStorage!");
 
-      console.log("Logging localStorage: ", localStorage);
-
+      // Set auth in Context API
       setAuth({ token, user, isAdmin: user.isAdmin });
+
+      // redirect to dashboard
       navigate(`/${user.username}`);
     } catch (error) {
       if (!error?.response) {

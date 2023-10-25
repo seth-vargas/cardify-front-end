@@ -15,8 +15,6 @@ export default function Navbar() {
     username = auth.user.username;
   }
 
-  console.log(username);
-
   return (
     <nav className="navbar sticky-top navbar-expand-sm bg-white border-bottom">
       <div className="container-fluid">

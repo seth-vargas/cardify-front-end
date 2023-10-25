@@ -10,24 +10,14 @@ export default class CardifyApi {
 
   static async login(data) {
     const response = await axios.post(`${BASE_API_URL}/auth/token`, data);
-
     return response.data;
-
-    // const token = response?.data?.token;
-    // const user = response?.data?.user;
-    // const isAdmin = response?.data?.user.isAdmin;
-
-    // return { token, user, isAdmin };
   }
 
   /* Create new user in db */
 
   static async signup(data) {
-    console.log("Creating new user"); // TODO: DELETE BEFORE SUBMITTING
-    console.log("data: ", data); // TODO: DELETE BEFORE SUBMITTING
-
-    const result = await axios.post(`${BASE_API_URL}/users`, data);
-    return result.data;
+    const response = await axios.post(`${BASE_API_URL}/auth/register`, data);
+    return response.data;
   }
 
   /* Grab user data from db */

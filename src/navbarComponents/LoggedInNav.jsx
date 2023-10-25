@@ -33,28 +33,35 @@ export default function LoggedInNav({ username }) {
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to={`/${username}/decks/create`}>
-            <i className="fa-solid fa-circle-plus fa-lg"></i>
+          <Link className="nav-link">
+            <div
+              className="dropdown-item"
+              data-bs-toggle="modal"
+              data-bs-target="#newDeckModal"
+            >
+              <i className="fa-solid fa-circle-plus fa-lg"></i>
+            </div>
           </Link>
         </li>
         <li className="nav-item">
-          {/* <Link className="nav-link" to="/my-account">
-            <i className="fa-solid fa-user fa-lg"></i>
-          </Link> */}
           <div className="dropdown dropstart">
             <button className="btn dropdown-toggle" data-bs-toggle="dropdown">
               <i className="fa-solid fa-user fa-lg"></i>
             </button>
             <ul className="dropdown-menu">
-              <li>
-                <Link className="dropdown-item" to="/change-info">
-                  Change my info
-                </Link>
+              <li
+                className="dropdown-item"
+                data-bs-toggle="modal"
+                data-bs-target="#editUserModal"
+              >
+                Change my info
               </li>
-              <li>
-                <Link className="dropdown-item text-danger" to="/logout">
-                  Log out
-                </Link>
+              <li
+                className="dropdown-item text-danger"
+                data-bs-toggle="modal"
+                data-bs-target="#logoutModal"
+              >
+                Log out
               </li>
             </ul>
           </div>
