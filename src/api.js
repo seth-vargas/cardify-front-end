@@ -34,6 +34,17 @@ export default class CardifyApi {
     }
   }
 
+  /* Remove user from db */
+
+  static async deleteUser(username) {
+    try {
+      const response = await axios.delete(`${BASE_API_URL}/users/${username}`);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   /* Create new deck in db */
 
   static async createDeck(data) {

@@ -57,11 +57,19 @@ export default function LoggedInNav({ username }) {
                 Change my info
               </li>
               <li
-                className="dropdown-item text-danger"
+                className="dropdown-item "
                 data-bs-toggle="modal"
                 data-bs-target="#logoutModal"
               >
-                Log out
+                Sign out
+              </li>
+              <hr />
+              <li
+                className="dropdown-item text-danger"
+                data-bs-toggle="modal"
+                data-bs-target="#deleteUserModal"
+              >
+                Delete Account
               </li>
             </ul>
           </div>

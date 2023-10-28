@@ -14,6 +14,7 @@ import LogoutModal from "./LogoutModal";
 import NewDeckModal from "./NewDeckModal";
 import EditUserModal from "./EditUserModal";
 import useAuth from "./hooks/useAuth";
+import DeleteUserModal from "./DeleteUserModal";
 
 console.log("Rendering whole app");
 
@@ -24,6 +25,7 @@ function App() {
       <LogoutModal />
       <NewDeckModal />
       <EditUserModal />
+      <DeleteUserModal />
       <main className="container">
         <Routes>
           <Route path="/" element={<Layout />}>
