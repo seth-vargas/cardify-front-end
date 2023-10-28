@@ -38,6 +38,7 @@ export default function NewDeckForm({ username }) {
       const { deck } = await CardifyApi.createDeck(data);
       console.log(username, deck.slug);
       navigate(`/${username}/decks/${deck.slug}`);
+      location.reload();
     } catch (error) {
       console.error(error);
     }
