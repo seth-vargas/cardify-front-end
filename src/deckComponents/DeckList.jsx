@@ -14,7 +14,20 @@ export default function DeckList({ decks, title }) {
           ))}
         </div>
       ) : (
-        `No ${title.toLowerCase()} found.`
+        <>
+          <b>No {title.toLowerCase()} found </b>
+          {title === "Decks" && (
+            <div>
+              <button
+                className="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#newDeckModal"
+              >
+                Create new deck
+              </button>
+            </div>
+          )}
+        </>
       )}
     </div>
   );
