@@ -4,8 +4,11 @@ import { useForm } from "react-hook-form";
 import DefaultInput from "./DefaultInput";
 import SubmitButton from "./SubmitButton";
 import CardifyApi from "../api";
+import { getUsername } from "../helpers";
 
 export default function EditUserForm() {
+  let username = getUsername();
+
   const {
     register,
     handleSubmit,
@@ -14,7 +17,7 @@ export default function EditUserForm() {
 
   async function onSubmit(data) {
     try {
-      await CardifyApi.updateUser(data);
+      await CardifyApi.updateUser(username, data);
       location.reload();
     } catch (error) {
       console.error(error);

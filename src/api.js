@@ -36,9 +36,12 @@ export default class CardifyApi {
 
   /* Edit user data in db */
 
-  static async updateUser(username) {
+  static async updateUser(username, data) {
     try {
-      const response = await axios.patch(`${BASE_API_URL}/users/${username}`);
+      const response = await axios.patch(
+        `${BASE_API_URL}/users/${username}`,
+        data
+      );
       return response.data;
     } catch (error) {
       console.error("There was an error updating your account...");
