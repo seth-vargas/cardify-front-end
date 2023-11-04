@@ -1,18 +1,6 @@
-import React from "react";
-import { useParams, useNavigate } from "react-router-dom";
-
-import CardifyApi from "../api";
-import EditDeckForm from "../formComponents/EditDeckForm";
 import NewFlashcardForm from "../formComponents/NewFlashcardForm";
 
 export default function CreateFlashcardModal({ cards, setCards }) {
-  const { username } = useParams();
-  const navigate = useNavigate();
-
-  async function editDeck() {
-    await CardifyApi.editDeck(deck.id);
-  }
-
   return (
     <div
       className="modal fade"
@@ -37,13 +25,6 @@ export default function CreateFlashcardModal({ cards, setCards }) {
           <div className="modal-footer">
             <button className="btn btn-secondary" data-bs-dismiss="modal">
               Close
-            </button>
-            <button
-              className="btn btn-primary"
-              data-bs-dismiss="modal"
-              onClick={editDeck}
-            >
-              Create card
             </button>
           </div>
         </div>
