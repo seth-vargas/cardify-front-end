@@ -3,10 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import DefaultInput from "./DefaultInput";
 import SubmitButton from "./SubmitButton";
+import CardifyApi from "../api";
 
 export default function EditUserForm() {
-  const navigate = useNavigate();
-
   const {
     register,
     handleSubmit,
@@ -15,8 +14,8 @@ export default function EditUserForm() {
 
   async function onSubmit(data) {
     try {
-      const { user } = await CardifyApi.editUser(data);
-      navigate(`/${user.username}`);
+      await CardifyApi.updateUser(data);
+      location.reload();
     } catch (error) {
       console.error(error);
     }

@@ -27,7 +27,7 @@ export default function EditDeckModal({ deck }) {
             ></button>
           </div>
           <div className="modal-body">
-            <EditDeckForm />
+            <EditDeckForm deck={deck} />
           </div>
           <div className="modal-footer">
             <button className="btn btn-secondary" data-bs-dismiss="modal">

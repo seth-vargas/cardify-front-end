@@ -34,6 +34,18 @@ export default class CardifyApi {
     }
   }
 
+  /* Edit user data in db */
+
+  static async updateUser(username) {
+    try {
+      const response = await axios.patch(`${BASE_API_URL}/users/${username}`);
+      return response.data;
+    } catch (error) {
+      console.error("There was an error updating your account...");
+      console.error("error:", error);
+    }
+  }
+
   /* Remove user from db */
 
   static async deleteUser(username) {
@@ -65,9 +77,9 @@ export default class CardifyApi {
 
   /* Change deck info in db */
 
-  static async editDeck(data) {
-    console.log(data);
-    console.log("Editing...");
+  static async editDeck(deckId, data) {
+    const response = await axios.patch(`${BASE_API_URL}/decks/${deckId}`, data);
+    return response.data;
   }
 
   /* Remove deck from db using deck ID */

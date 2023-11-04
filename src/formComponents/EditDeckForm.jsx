@@ -8,10 +8,7 @@ import CheckBoxInput from "./CheckBoxInput";
 import SubmitButton from "./SubmitButton";
 import TextAreaInput from "./TextAreaInput";
 
-export default function EditDeckForm() {
-  const { username } = useParams();
-  const navigate = useNavigate();
-
+export default function EditDeckForm({ deck }) {
   const {
     register,
     handleSubmit,
@@ -20,9 +17,11 @@ export default function EditDeckForm() {
 
   async function onSubmit(data) {
     try {
-      await CardifyApi.editDeck(data);
+      const updatedDeck = await CardifyApi.editDeck(deck.id, data);
+      location.reload();
     } catch (error) {
-      console.error(error);
+      console.error("There was an error updating your deck...");
+      console.error("error:", error);
     }
   }
 
