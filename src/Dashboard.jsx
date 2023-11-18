@@ -6,20 +6,17 @@
 // TODO - Handle 404: User Not Found
 
 import { useEffect, useState } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
-import slugify from "react-slugify";
+import { useParams, useNavigate } from "react-router-dom";
 
 import CardifyApi from "./api";
 import Loading from "./Loading";
 import DeckList from "./deckComponents/DeckList";
-import useAuth from "./hooks/useAuth";
 
 export default function Dashboard() {
   const [isLoading, setIsLoading] = useState(true);
   const [decks, setDecks] = useState([]);
   const [favorites, setFavorites] = useState([]);
 
-  const { auth } = useAuth();
   const navigate = useNavigate();
 
   const { username } = useParams();
@@ -38,7 +35,7 @@ export default function Dashboard() {
       }
     }
     fetchData();
-  }, []);
+  }, [username]);
 
   return (
     <div className="my-5">

@@ -1,4 +1,3 @@
-import React from "react";
 import CardifyApi from "./api";
 import useAuth from "./hooks/useAuth";
 import { useNavigate } from "react-router-dom";
