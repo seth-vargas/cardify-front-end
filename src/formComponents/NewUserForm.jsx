@@ -55,6 +55,7 @@ export default function NewUserForm() {
       navigate(`/${user.username}`);
     } catch (error) {
       console.error(error);
+      // eslint-disable-next-line no-unsafe-optional-chaining
       const { message } = error?.response?.data?.error;
       console.error(message);
       setErrorMessage(message);

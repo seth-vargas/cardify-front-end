@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 /* Library imports */
-import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
@@ -8,12 +7,7 @@ import { useNavigate } from "react-router-dom";
 import CardifyApi from "../api";
 import DefaultInput from "./DefaultInput";
 import TextAreaInput from "./TextAreaInput";
-import CheckBoxInput from "./CheckBoxInput";
 import SubmitButton from "./SubmitButton";
-
-/* Helper imports */
-import { commonFormClassName } from "../helpers";
-import useAuth from "../hooks/useAuth";
 
 /**
  * Renders form interface for users to create a new deck.
