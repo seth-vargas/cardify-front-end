@@ -130,9 +130,20 @@ export default class CardifyApi {
 
   static async favorite(username, ownerUsername, deckSlug) {
     console.log(`Adding ${deckSlug} to ${username}'s favorites.`);
+    let res = await axios.post(
+      `${BASE_API_URL}/users/${username}/favorites/${ownerUsername}/decks/${deckSlug}`,
+      {}
+    );
+
+    return res.data;
   }
 
   static async unfavorite(username, ownerUsername, deckSlug) {
     console.log(`Removing ${deckSlug} from ${username}'s favorites.`);
+    let res = await axios.delete(
+      `${BASE_API_URL}/users/${username}/favorites/${ownerUsername}/decks/${deckSlug}`
+    );
+
+    return res.data;
   }
 }

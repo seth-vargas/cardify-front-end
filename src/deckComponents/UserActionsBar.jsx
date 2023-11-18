@@ -1,15 +1,30 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
+import { getUsername } from "../helpers";
 import CardifyApi from "../api";
 
 export default function UserActionsBar({ deck }) {
   const [isFavorite, setIsFavorite] = useState(false);
   const { username, deckSlug } = useParams();
+  let loggedInUsername = getUsername();
+
+  useEffect(() => {
+    async function checkForFavorite() {
+      const { user } = await CardifyApi.getUser(loggedInUsername);
+      for (let favorite of user.favorites) {
+        if (favorite.slug === deck.slug) {
+          setIsFavorite(true);
+          break;
+        }
+      }
+    }
+    checkForFavorite();
+  }, [deck.slug, loggedInUsername]);
 
   async function favorite() {
     try {
-      await CardifyApi.favorite();
+      await CardifyApi.favorite(loggedInUsername, deck.username, deckSlug);
       setIsFavorite(!isFavorite);
     } catch (error) {
       console.error(error);
@@ -17,6 +32,7 @@ export default function UserActionsBar({ deck }) {
   }
 
   async function unfavorite() {
+    await CardifyApi.unfavorite(loggedInUsername, deck.username, deckSlug);
     setIsFavorite(!isFavorite);
   }
 
