@@ -6,7 +6,7 @@ import CardifyApi from "../api";
 
 export default function UserActionsBar({ deck }) {
   const [isFavorite, setIsFavorite] = useState(false);
-  const { username, deckSlug } = useParams();
+  const { deckSlug } = useParams();
   let loggedInUsername = getUsername();
 
   useEffect(() => {
