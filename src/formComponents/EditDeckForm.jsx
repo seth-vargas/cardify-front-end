@@ -1,10 +1,8 @@
-import { useState } from "react";
+/* eslint-disable react/prop-types */
 import { useForm } from "react-hook-form";
-import { useNavigate, useParams } from "react-router-dom";
 
 import CardifyApi from "../api";
 import DefaultInput from "./DefaultInput";
-import CheckBoxInput from "./CheckBoxInput";
 import SubmitButton from "./SubmitButton";
 import TextAreaInput from "./TextAreaInput";
 
@@ -13,11 +11,13 @@ export default function EditDeckForm({ deck }) {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   async function onSubmit(data) {
     try {
-      const updatedDeck = await CardifyApi.editDeck(deck.id, data);
+      await CardifyApi.editDeck(deck.id, data);
+      reset();
       location.reload();
     } catch (error) {
       console.error("There was an error updating your deck...");

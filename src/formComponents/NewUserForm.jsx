@@ -35,6 +35,7 @@ export default function NewUserForm() {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   async function onSubmit(data) {
@@ -50,6 +51,7 @@ export default function NewUserForm() {
       setAuth({ token, user, isAdmin: user.isAdmin });
 
       // redirect to dashboard
+      reset();
       navigate(`/${user.username}`);
     } catch (error) {
       console.error(error);
@@ -68,7 +70,7 @@ export default function NewUserForm() {
         <form className={commonFormClassName} onSubmit={handleSubmit(onSubmit)}>
           {errorMessage && (
             <div className="alert alert-danger text-center" role="alert">
-              <i class="fa-solid fa-triangle-exclamation me-2"></i>
+              <i className="fa-solid fa-triangle-exclamation me-2"></i>
               {errorMessage}
             </div>
           )}

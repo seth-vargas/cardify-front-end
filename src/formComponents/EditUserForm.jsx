@@ -1,8 +1,5 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import DefaultInput from "./DefaultInput";
-import SubmitButton from "./SubmitButton";
 import CardifyApi from "../api";
 import { getUsername } from "../helpers";
 
@@ -13,11 +10,13 @@ export default function EditUserForm() {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   async function onSubmit(data) {
     try {
       await CardifyApi.updateUser(username, data);
+      reset();
       location.reload();
     } catch (error) {
       console.error(error);

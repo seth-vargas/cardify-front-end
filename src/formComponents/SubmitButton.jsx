@@ -1,5 +1,4 @@
-import React from "react";
-
+/* eslint-disable react/prop-types */
 export default function SubmitButton({ text, errors, bsDismiss = "" }) {
   function hasErrors(obj) {
     for (const key in obj) {

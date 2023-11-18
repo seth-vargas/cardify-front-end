@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import CardifyApi from "../api";
 import useAuth from "../hooks/useAuth";
@@ -17,12 +17,12 @@ export default function LoginForm() {
   const { setAuth } = useAuth();
 
   const navigate = useNavigate();
-  const location = useLocation();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   async function onSubmit(data) {
@@ -38,6 +38,7 @@ export default function LoginForm() {
       setAuth({ token, user, isAdmin: user.isAdmin });
 
       // redirect to dashboard
+      reset();
       navigate(`/${user.username}`);
     } catch (error) {
       if (!error?.response) {
@@ -82,7 +83,7 @@ export default function LoginForm() {
           <SubmitButton text="Log In" errors={errors} />
           <div className="row my-2">
             <small className="text-center">
-              Don't have an account?
+              Need to make an account?
               <br />
               <Link to="/signup" className="text-decoration-none">
                 Sign up here.

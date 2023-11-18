@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useForm } from "react-hook-form";
 import { useParams, useNavigate } from "react-router-dom";
 
@@ -14,6 +15,7 @@ export default function NewFlashcardForm({ existingCards, setCards }) {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   async function onSubmit(data) {
@@ -22,6 +24,7 @@ export default function NewFlashcardForm({ existingCards, setCards }) {
       data.slug = deckSlug;
       const { card } = await CardifyApi.createFlashcard(data);
       setCards([...existingCards, card]);
+      reset();
       navigate(`/${username}/decks/${deckSlug}`);
     } catch (error) {
       console.error(error);

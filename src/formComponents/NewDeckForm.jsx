@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* Library imports */
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -29,6 +30,7 @@ export default function NewDeckForm({ username }) {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   async function onSubmit(data) {
@@ -36,7 +38,7 @@ export default function NewDeckForm({ username }) {
     data.isPublic = false;
     try {
       const { deck } = await CardifyApi.createDeck(data);
-      console.log(username, deck.slug);
+      reset();
       navigate(`/${username}/decks/${deck.slug}`);
       location.reload();
     } catch (error) {

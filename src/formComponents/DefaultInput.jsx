@@ -1,6 +1,4 @@
-import React from "react";
-import { useForm } from "react-hook-form";
-
+/* eslint-disable react/prop-types */
 /** Basic input element. */
 
 export default function DefaultInput({
