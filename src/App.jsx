@@ -15,12 +15,13 @@ import NewDeckModal from "./NewDeckModal";
 import EditUserModal from "./EditUserModal";
 import useAuth from "./hooks/useAuth";
 import DeleteUserModal from "./DeleteUserModal";
+import Footer from "./Footer";
 
 console.log("Rendering whole app");
 
 function App() {
   return (
-    <main>
+    <>
       <Navbar />
       <LogoutModal />
       <NewDeckModal />
@@ -55,7 +56,8 @@ function App() {
           </Route>
         </Routes>
       </main>
-    </main>
+      <Footer />
+    </>
   );
 }
 
