@@ -4,7 +4,6 @@
     * Provide redirects to either "Log In" or "Sign Up" pages.
 */
 
-import React from "react";
 import { Link } from "react-router-dom";
 import { getUsername } from "./helpers";
 
@@ -16,11 +15,9 @@ export default function LandingPage() {
       <h1 className="display-1">Welcome to Cardify, the flashcard app!</h1>
       <p className="lead">This is going to blow your mind.</p>
 
-      <hr className="my-3" />
-      {username ? (
-        ""
-      ) : (
+      {!username && (
         <div>
+          <hr className="my-3" />
           <Link className="btn btn-primary me-2" to="/login">
             Log in
           </Link>
